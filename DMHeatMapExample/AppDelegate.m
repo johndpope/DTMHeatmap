@@ -3,7 +3,7 @@
 //  DMHeatMapExample
 //
 //  Created by Bryan Oltman on 1/7/15.
-//  Copyright (c) 2015 Bryan Oltman. All rights reserved.
+//  Copyright (c) 2015 Dataminr. All rights reserved.
 //
 
 #import "AppDelegate.h"

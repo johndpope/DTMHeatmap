@@ -14,6 +14,10 @@
 		EDAC952D1A5DC8FE00E8403E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAC952C1A5DC8FE00E8403E /* Images.xcassets */; };
 		EDAC95301A5DC8FE00E8403E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDAC952E1A5DC8FE00E8403E /* LaunchScreen.xib */; };
 		EDAC953C1A5DC8FE00E8403E /* DMHeatMapExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC953B1A5DC8FE00E8403E /* DMHeatMapExampleTests.m */; };
+		EDAC95461A5DC9A100E8403E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAC95451A5DC9A100E8403E /* MapKit.framework */; };
+		EDAC954D1A5DC9F000E8403E /* DMHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */; };
+		EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */; };
+		EDAC95501A5DCF2600E8403E /* mcdonalds.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 		EDAC95351A5DC8FE00E8403E /* DMHeatMapExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DMHeatMapExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAC953A1A5DC8FE00E8403E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAC953B1A5DC8FE00E8403E /* DMHeatMapExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMHeatMapExampleTests.m; sourceTree = "<group>"; };
+		EDAC95451A5DC9A100E8403E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EDAC95491A5DC9F000E8403E /* DMHeatmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeatmap.h; sourceTree = "<group>"; };
+		EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmap.m; sourceTree = "<group>"; };
+		EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeatmapRenderer.h; sourceTree = "<group>"; };
+		EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmapRenderer.m; sourceTree = "<group>"; };
+		EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mcdonalds.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAC95461A5DC9A100E8403E /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +74,10 @@
 		EDAC95131A5DC8FE00E8403E = {
 			isa = PBXGroup;
 			children = (
+				EDAC95481A5DC9DE00E8403E /* HeatMap */,
 				EDAC951E1A5DC8FE00E8403E /* DMHeatMapExample */,
 				EDAC95381A5DC8FE00E8403E /* DMHeatMapExampleTests */,
+				EDAC95471A5DC9CB00E8403E /* Frameworks */,
 				EDAC951D1A5DC8FE00E8403E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +94,7 @@
 		EDAC951E1A5DC8FE00E8403E /* DMHeatMapExample */ = {
 			isa = PBXGroup;
 			children = (
+				EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */,
 				EDAC95231A5DC8FE00E8403E /* AppDelegate.h */,
 				EDAC95241A5DC8FE00E8403E /* AppDelegate.m */,
 				EDAC95261A5DC8FE00E8403E /* ViewController.h */,
@@ -117,6 +131,25 @@
 				EDAC953A1A5DC8FE00E8403E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EDAC95471A5DC9CB00E8403E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDAC95451A5DC9A100E8403E /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDAC95481A5DC9DE00E8403E /* HeatMap */ = {
+			isa = PBXGroup;
+			children = (
+				EDAC95491A5DC9F000E8403E /* DMHeatmap.h */,
+				EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */,
+				EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */,
+				EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */,
+			);
+			name = HeatMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAC95501A5DCF2600E8403E /* mcdonalds.txt in Resources */,
 				EDAC952B1A5DC8FE00E8403E /* Main.storyboard in Resources */,
 				EDAC95301A5DC8FE00E8403E /* LaunchScreen.xib in Resources */,
 				EDAC952D1A5DC8FE00E8403E /* Images.xcassets in Resources */,
@@ -222,6 +256,8 @@
 				EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */,
 				EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */,
 				EDAC95221A5DC8FE00E8403E /* main.m in Sources */,
+				EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */,
+				EDAC954D1A5DC9F000E8403E /* DMHeatmap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +448,7 @@
 				EDAC95411A5DC8FE00E8403E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDAC95421A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatMapExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +457,7 @@
 				EDAC95441A5DC8FE00E8403E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

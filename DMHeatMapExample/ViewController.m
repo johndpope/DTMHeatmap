@@ -3,25 +3,63 @@
 //  DMHeatMapExample
 //
 //  Created by Bryan Oltman on 1/7/15.
-//  Copyright (c) 2015 Bryan Oltman. All rights reserved.
+//  Copyright (c) 2015 Dataminr. All rights reserved.
 //
 
 #import "ViewController.h"
+#import "DMHeatmapRenderer.h"
 
 @interface ViewController ()
-
+@property (strong, nonatomic) DMHeatmap *heatmap;
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    // Set map region
+    MKCoordinateSpan span = MKCoordinateSpanMake(10.0, 13.0);
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.7, -74.0);
+    self.mapView.region = MKCoordinateRegionMake(center, span);
+    
+    self.heatmap = [DMHeatmap new];
+    [self.heatmap setData:[self mapData]];
+    [self.mapView addOverlay:self.heatmap];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSDictionary *)mapData
+{
+    NSMutableDictionary *ret = [NSMutableDictionary new];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"mcdonalds" ofType:@"txt"];
+    NSString *content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSArray *lines = [content componentsSeparatedByString:@"\n"];
+    for (NSString *line in lines)
+    {
+        NSArray *parts = [line componentsSeparatedByString:@","];
+        NSString *latStr = parts[0];
+        NSString *lonStr = parts[1];
+        
+        CLLocationDegrees latitude = [latStr doubleValue];
+        CLLocationDegrees longitude = [lonStr doubleValue];
+        double weight = 10;
+        
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
+        NSValue *pointValue = [NSValue value:&point withObjCType:@encode(MKMapPoint)];
+        ret[pointValue] = @(weight);
+    }
+    
+    return ret;
+}
+
+#pragma mark - MKMapViewDelegate
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    return [[DMHeatmapRenderer alloc] initWithOverlay:overlay];
 }
 
 @end
