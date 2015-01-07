@@ -45,11 +45,15 @@
         
         CLLocationDegrees latitude = [latStr doubleValue];
         CLLocationDegrees longitude = [lonStr doubleValue];
-        double weight = 10;
         
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        // For this example, each location is weighted equally
+        double weight = 1;
+        
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude
+                                                          longitude:longitude];
         MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
-        NSValue *pointValue = [NSValue value:&point withObjCType:@encode(MKMapPoint)];
+        NSValue *pointValue = [NSValue value:&point
+                                withObjCType:@encode(MKMapPoint)];
         ret[pointValue] = @(weight);
     }
     
