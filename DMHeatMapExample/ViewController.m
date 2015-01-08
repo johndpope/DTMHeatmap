@@ -20,8 +20,8 @@
     [super viewDidLoad];
     
     // Set map region
-    MKCoordinateSpan span = MKCoordinateSpanMake(10.0, 13.0);
-    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.7, -74.0);
+    MKCoordinateSpan span = MKCoordinateSpanMake(3.0, 3.0);
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.4, -74.4);
     self.mapView.region = MKCoordinateRegionMake(center, span);
     
     self.heatmap = [DMHeatmap new];

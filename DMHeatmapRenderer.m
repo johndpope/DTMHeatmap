@@ -31,8 +31,6 @@ static const CGFloat kSBMaxAlpha = 0.85;
 
 @implementation DMHeatmapRenderer
 
-@synthesize scaleMatrix = _scaleMatrix;
-
 - (id)initWithOverlay:(id <MKOverlay>)overlay
 {
     if (self = [super initWithOverlay:overlay]) {
@@ -66,6 +64,7 @@ static const CGFloat kSBMaxAlpha = 0.85;
                  blue:(CGFloat *)blue
                 alpha:(CGFloat *)alpha
 {
+    static int maxVal = 255;
     if (value > 1) {
         value = 1;
     }
@@ -80,20 +79,20 @@ static const CGFloat kSBMaxAlpha = 0.85;
     
     //formula converts a number from 0 to 1.0 to an rgb color.
     //uses MATLAB/Octave colorbar code
-    if(value <= 0) {
+    if (value <= 0) {
         *red = *green = *blue = *alpha = 0;
-    } else if(value < 0.125) {
+    } else if (value < 0.125) {
         *red = *green = 0;
         *blue = 4 * (value + 0.125);
-    } else if(value < 0.375) {
+    } else if (value < 0.375) {
         *red = 0;
         *green = 4 * (value - 0.125);
         *blue = 1;
-    } else if(value < 0.625) {
+    } else if (value < 0.625) {
         *red = 4 * (value - 0.375);
         *green = 1;
         *blue = 1 - 4 * (value - 0.375);
-    } else if(value < 0.875) {
+    } else if (value < 0.875) {
         *red = 1;
         *green = 1 - 4 * (value - 0.625);
         *blue = 0;
@@ -101,6 +100,11 @@ static const CGFloat kSBMaxAlpha = 0.85;
         *red = MAX(1 - 4 * (value - 0.875), 0.5);
         *green = *blue = 0;
     }
+    
+    *alpha *= maxVal;
+    *blue *= *alpha;
+    *green *= *alpha;
+    *red *= *alpha;
 }
 
 - (void)drawMapRect:(MKMapRect)mapRect
@@ -147,14 +151,14 @@ static const CGFloat kSBMaxAlpha = 0.85;
             
             if (value > 0) { //don't bother with 0 or negative values
                 //iterate through surrounding pixels and increase
-                for(int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
-                    for(int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
+                for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
+                    for (int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
                         //find the array index
                         int column = floor(matrixCoord.x - kSBHeatRadiusInPoints + i);
                         int row = floor(matrixCoord.y - kSBHeatRadiusInPoints + j);
                         
                         //make sure this is a valid array index
-                        if(row >= 0 && column >= 0 && row < rows && column < columns) {
+                        if (row >= 0 && column >= 0 && row < rows && column < columns) {
                             int index = columns * row + column;
                             pointValues[index] += value * _scaleMatrix[j * 2 * kSBHeatRadiusInPoints + i];
                         }
@@ -169,20 +173,22 @@ static const CGFloat kSBMaxAlpha = 0.85;
         int arrayLen = columns * rows;
         for (int i = 0; i < arrayLen; i++) {
             if (pointValues[i] > 0) {
-                indexOrigin = 4*i;
+                indexOrigin = 4 * i;
                 [self colorForValue:pointValues[i]
                                 red:&red
                               green:&green
                                blue:&blue
                               alpha:&alpha];
                 
-                rgba[indexOrigin] = red * 255 * alpha;
-                rgba[indexOrigin+1] = green * 255 * alpha;
-                rgba[indexOrigin+2] = blue * 255 * alpha;
-                rgba[indexOrigin+3] = alpha * 255;
+                rgba[indexOrigin] = red;
+                rgba[indexOrigin + 1] = green;
+                rgba[indexOrigin + 2] = blue;
+                rgba[indexOrigin + 3] = alpha;
             }
         }
         
+        free(pointValues);
+
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         CGContextRef bitmapContext = CGBitmapContextCreate(rgba,
                                                            columns,
@@ -191,13 +197,14 @@ static const CGFloat kSBMaxAlpha = 0.85;
                                                            4 * columns, // bytesPerRow
                                                            colorSpace,
                                                            kCGImageAlphaPremultipliedLast | kCGBitmapByteOrderDefault);
+
+       
         CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
         UIImage *img = [UIImage imageWithCGImage:cgImage];
-        CFRelease(colorSpace);
         CFRelease(cgImage);
         CFRelease(bitmapContext);
+        CFRelease(colorSpace);
         free(rgba);
-        free(pointValues);
         
         UIGraphicsPushContext(context);
         [img drawInRect:usIntersect];
