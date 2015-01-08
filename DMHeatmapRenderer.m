@@ -34,8 +34,8 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
 
 - (void)populateScaleMatrix
 {
-    for(int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
-        for(int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
+    for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
+        for (int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
             float distance = sqrt((i - kSBHeatRadiusInPoints) * (i - kSBHeatRadiusInPoints) + (j - kSBHeatRadiusInPoints) * (j - kSBHeatRadiusInPoints));
             float scaleFactor = 1 - distance / kSBHeatRadiusInPoints;
             if (scaleFactor < 0) {
@@ -91,7 +91,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
             CGPoint matrixCoord = CGPointMake((usPoint.x - usRect.origin.x) * zoomScale,
                                               (usPoint.y - usRect.origin.y) * zoomScale);
             
-            if (value > 0) { //don't bother with 0 or negative values
+            if (value != 0) { //don't bother with 0
                 //iterate through surrounding pixels and increase
                 for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
                     for (int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
@@ -114,7 +114,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         unsigned char *rgba = (unsigned char *)calloc(columns * rows * 4, sizeof(unsigned char));
         int arrayLen = columns * rows;
         for (int i = 0; i < arrayLen; i++) {
-            if (pointValues[i] > 0) {
+            if (pointValues[i] != 0) {
                 indexOrigin = 4 * i;
                 [self.colorProvider colorForValue:pointValues[i]
                                               red:&red

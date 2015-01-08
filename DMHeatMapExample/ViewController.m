@@ -24,7 +24,7 @@
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.4, -74.4);
     self.mapView.region = MKCoordinateRegionMake(center, span);
     
-    self.heatmap = [DMHeatmap new];
+    self.heatmap = [DMHeatmap heatmapWithMode:DMHeatmapModeStandard];
     [self.heatmap setData:[self mapData]];
     [self.mapView addOverlay:self.heatmap];
 }

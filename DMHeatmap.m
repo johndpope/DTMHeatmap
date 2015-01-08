@@ -24,6 +24,7 @@ static const int kSBScreenPointsPerBucket = 10;
 @property (nonatomic) double maxValue;
 @property (nonatomic) double minValue;
 @property double zoomedOutMax;
+@property double zoomedOutMin;
 @property (nonatomic) NSDictionary *pointsWithHeat;
 @property CLLocationCoordinate2D center;
 @property MKMapRect boundingRect;
@@ -86,6 +87,10 @@ static const int kSBScreenPointsPerBucket = 10;
         if (buckets[i] > self.zoomedOutMax) {
             self.zoomedOutMax = buckets[i];
         }
+        
+        if (buckets[i] < self.zoomedOutMin) {
+            self.zoomedOutMin = buckets[i];
+        }
     }
     
     free(buckets);
@@ -123,8 +128,12 @@ static const int kSBScreenPointsPerBucket = 10;
     double absMax = fabs(self.maxValue);
     double scaleValue = MAX(absMin, absMax);
     
+    double absZoomedMin = fabs(self.zoomedOutMin);
+    double absZoomedMax = fabs(self.zoomedOutMax);
+    double zoomedValue = MAX(absZoomedMin, absZoomedMax);
+    
     double zoomScale = log2(1/scale);
-    double slope = (self.zoomedOutMax - scaleValue) / (kSBZoomLevels - 1);
+    double slope = (zoomedValue - scaleValue) / (kSBZoomLevels - 1);
     double x = pow(zoomScale, kSBScalePower) / pow(kSBZoomLevels, kSBScalePower - 1);
     double scaleFactor = (x - 1) * slope + scaleValue;
    
