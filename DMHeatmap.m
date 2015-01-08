@@ -22,6 +22,7 @@ static const int kSBScreenPointsPerBucket = 10;
 
 @interface DMHeatmap ()
 @property (nonatomic) double maxValue;
+@property (nonatomic) double minValue;
 @property double zoomedOutMax;
 @property (nonatomic) NSDictionary *pointsWithHeat;
 @property CLLocationCoordinate2D center;
@@ -30,13 +31,11 @@ static const int kSBScreenPointsPerBucket = 10;
 
 @implementation DMHeatmap
 
-- (id)initWithData:(NSDictionary *)heatMapData
++ (instancetype)heatmapWithMode:(DMHeatmapMode)mode
 {
-    if (self = [super init]) {
-        [self setData:heatMapData];
-    }
-    
-    return self;
+    DMHeatmap *heatmap = [DMHeatmap new];
+    heatmap.heatmapMode = mode;
+    return heatmap;
 }
 
 - (void)setData:(NSDictionary *)newHeatMapData
@@ -45,7 +44,7 @@ static const int kSBScreenPointsPerBucket = 10;
         return;
     }
     
-    self.maxValue = 0;
+    self.maxValue = self.minValue = 0;
     
     MKMapPoint upperLeftPoint, lowerRightPoint;
     [[[newHeatMapData allKeys] lastObject] getValue:&upperLeftPoint];
@@ -65,10 +64,13 @@ static const int kSBScreenPointsPerBucket = 10;
         if (point.x > lowerRightPoint.x) lowerRightPoint.x = point.x;
         if (point.y > lowerRightPoint.y) lowerRightPoint.y = point.y;
         
-        NSNumber *value = [newHeatMapData objectForKey:mapPointValue];
+        double value = [[newHeatMapData objectForKey:mapPointValue] doubleValue];
+        if (value > self.maxValue) {
+            self.maxValue = value;
+        }
         
-        if ([value doubleValue] > self.maxValue) {
-            self.maxValue = [value doubleValue];
+        if (value < self.minValue) {
+            self.minValue = value;
         }
         
         //bucket the map point:
@@ -77,7 +79,7 @@ static const int kSBScreenPointsPerBucket = 10;
         
         int offset = kSBZoomZeroDimension * row + col;
         
-        buckets[offset] += [value doubleValue];
+        buckets[offset] += value;
     }
     
     for (int i = 0; i < kSBZoomZeroDimension * kSBZoomZeroDimension; i++) {
@@ -117,13 +119,17 @@ static const int kSBScreenPointsPerBucket = 10;
     NSMutableDictionary *toReturn = [[NSMutableDictionary alloc] init];
     int bucketDelta = kSBScreenPointsPerBucket / scale;
     
-    double zoomScale = log2(1/scale);
-    double slope = (self.zoomedOutMax - self.maxValue) / (kSBZoomLevels - 1);
-    double x = pow(zoomScale, kSBScalePower) / pow(kSBZoomLevels, kSBScalePower - 1);
-    double scaleFactor = (x - 1) * slope + self.maxValue;
+    double absMin = fabs(self.minValue);
+    double absMax = fabs(self.maxValue);
+    double scaleValue = MAX(absMin, absMax);
     
-    if (scaleFactor < self.maxValue) {
-        scaleFactor = self.maxValue;
+    double zoomScale = log2(1/scale);
+    double slope = (self.zoomedOutMax - scaleValue) / (kSBZoomLevels - 1);
+    double x = pow(zoomScale, kSBScalePower) / pow(kSBZoomLevels, kSBScalePower - 1);
+    double scaleFactor = (x - 1) * slope + scaleValue;
+   
+    if (scaleFactor < scaleValue) {
+        scaleFactor = scaleValue;
     }
     
     for (NSValue *key in self.pointsWithHeat) {

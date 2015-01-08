@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED6E114E1A5F062100D6DB4A /* DMColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */; };
+		ED6E11511A5F06DB00D6DB4A /* DMStandardColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */; };
+		ED6E11541A5F06E700D6DB4A /* DMDiffColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */; };
 		EDAC95221A5DC8FE00E8403E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95211A5DC8FE00E8403E /* main.m */; };
 		EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95241A5DC8FE00E8403E /* AppDelegate.m */; };
 		EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95271A5DC8FE00E8403E /* ViewController.m */; };
@@ -31,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED6E114C1A5F062100D6DB4A /* DMColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMColorProvider.h; sourceTree = "<group>"; };
+		ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMColorProvider.m; sourceTree = "<group>"; };
+		ED6E114F1A5F06DB00D6DB4A /* DMStandardColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMStandardColorProvider.h; sourceTree = "<group>"; };
+		ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMStandardColorProvider.m; sourceTree = "<group>"; };
+		ED6E11521A5F06E700D6DB4A /* DMDiffColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDiffColorProvider.h; sourceTree = "<group>"; };
+		ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDiffColorProvider.m; sourceTree = "<group>"; };
 		EDAC951C1A5DC8FE00E8403E /* DMHeatMapExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMHeatMapExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAC95201A5DC8FE00E8403E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAC95211A5DC8FE00E8403E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,6 +80,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED6E114B1A5F052300D6DB4A /* Color Providers */ = {
+			isa = PBXGroup;
+			children = (
+				ED6E114C1A5F062100D6DB4A /* DMColorProvider.h */,
+				ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */,
+				ED6E114F1A5F06DB00D6DB4A /* DMStandardColorProvider.h */,
+				ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */,
+				ED6E11521A5F06E700D6DB4A /* DMDiffColorProvider.h */,
+				ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */,
+			);
+			name = "Color Providers";
+			sourceTree = "<group>";
+		};
 		EDAC95131A5DC8FE00E8403E = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +166,7 @@
 		EDAC95481A5DC9DE00E8403E /* HeatMap */ = {
 			isa = PBXGroup;
 			children = (
+				ED6E114B1A5F052300D6DB4A /* Color Providers */,
 				EDAC95491A5DC9F000E8403E /* DMHeatmap.h */,
 				EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */,
 				EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */,
@@ -255,6 +278,9 @@
 			files = (
 				EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */,
 				EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */,
+				ED6E11511A5F06DB00D6DB4A /* DMStandardColorProvider.m in Sources */,
+				ED6E114E1A5F062100D6DB4A /* DMColorProvider.m in Sources */,
+				ED6E11541A5F06E700D6DB4A /* DMDiffColorProvider.m in Sources */,
 				EDAC95221A5DC8FE00E8403E /* main.m in Sources */,
 				EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */,
 				EDAC954D1A5DC9F000E8403E /* DMHeatmap.m in Sources */,
