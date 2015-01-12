@@ -7,33 +7,8 @@
 //
 
 #import "DMColorProvider.h"
-#import "DMStandardColorProvider.h"
-#import "DMDiffColorProvider.h"
 
 @implementation DMColorProvider
-
-+ (DMColorProvider *)providerForMode:(DMHeatmapMode)heatmapMode
-{
-    static DMStandardColorProvider *standardProvider = nil;
-    static DMDiffColorProvider *diffProvider = nil;
-    
-    switch (heatmapMode) {
-        case DMHeatmapModeStandard:
-            if (!standardProvider) {
-                standardProvider = [DMStandardColorProvider new];
-            }
-            
-            return standardProvider;
-        case DMHeatmapModeDiff:
-            if (!diffProvider) {
-                diffProvider = [DMDiffColorProvider new];
-            }
-            
-            return diffProvider;
-    }
-    
-    return nil;
-}
 
 - (instancetype)init
 {

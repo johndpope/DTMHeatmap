@@ -25,8 +25,6 @@ static const CGFloat kSBMaxAlpha = 0.85;
 
 @interface DMColorProvider : NSObject
 
-+ (DMColorProvider *)providerForMode:(DMHeatmapMode)heatmapMode;
-
 - (void)colorForValue:(double)value
                   red:(CGFloat *)red
                 green:(CGFloat *)green

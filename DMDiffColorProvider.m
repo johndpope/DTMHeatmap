@@ -17,43 +17,65 @@
                 alpha:(CGFloat *)alpha
 {
     static int maxVal = 255;
-    double absValue;
     
     if (value == 0) {
         return;
     }
     
-    if (value < 0) {
-        // Cool color to represent a decrease
-        absValue = sqrt(MIN(-value, 1));
-        
-        *blue = absValue * maxVal;
-        *alpha = *blue;
-        if (absValue >= 0.75) {
-            *green = *blue;
-        } else if (absValue >= 0.5) {
-            *green = (absValue - 0.5) * maxVal * 3;
-        }
-        
-        if (absValue >= 0.8) {
-            *red = (absValue - 0.8) * maxVal * 5;
+    BOOL isNegative = value < 0;
+    value = sqrt(MIN(ABS(value), 1));
+    if (value < kSBAlphaPivotY) {
+        *alpha = value * kSBAlphaPivotY / kSBAlphaPivotX;
+    } else {
+        *alpha = kSBAlphaPivotY + ((kSBMaxAlpha - kSBAlphaPivotY) / (1 - kSBAlphaPivotX)) * (value - kSBAlphaPivotX);
+    }
+    
+    if (isNegative) {
+        *red = 0;
+        if (value <= 0) {
+            *green = *blue = *alpha = 0;
+        } else if (value < 0.125) {
+            *green = 0;
+            *blue = 2 * (value + 0.125);
+        } else if (value < 0.375) {
+            *blue = 2 * (value + 0.125);
+            *green = 4 * (value - 0.125);
+        } else if (value < 0.625) {
+            *blue = 4 * (value - 0.375);
+            *green = 1;
+        } else if (value < 0.875) {
+            *blue = 1;
+            *green = 1 - 4 * (value - 0.625);
+        } else {
+            *blue = MAX(1 - 4 * (value - 0.875), 0.5);
+            *green = 0;
         }
     } else {
-        // Warm color to represent an increase
-        absValue = sqrt(MIN(value, 1));
-        
-        *red = absValue * maxVal;
-        *alpha = *red;
-        if (absValue >= 0.75) {
-            *green = *red;
-        } else if (absValue >= 0.5) {
-            *green = (absValue - 0.5) * maxVal * 3;
-        }
-        
-        if (absValue >= 0.8) {
-            *blue = (absValue - 0.8) * maxVal * 5;
+        *blue = 0;
+        if (value <= 0) {
+            *red = *green = *alpha = 0;
+        } else if (value < 0.125) {
+            *green = value;
+            *red = (value);
+        } else if (value < 0.375) {
+            *red = (value + 0.125);
+            *green = value;
+        } else if (value < 0.625) {
+            *red = (value + 0.125);
+            *green = value;
+        } else if (value < 0.875) {
+            *red = (value + 0.125);
+            *green = 1 - 4 * (value - 0.625);
+        } else {
+            *green = 0;
+            *red = MAX(1 - 4 * (value - 0.875), 0.5);
         }
     }
+    
+    *alpha *= maxVal;
+    *blue *= *alpha;
+    *green *= *alpha;
+    *red *= *alpha;
 }
 
 @end

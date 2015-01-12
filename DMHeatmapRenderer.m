@@ -14,7 +14,6 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
 
 @interface DMHeatmapRenderer ()
 @property (nonatomic, readonly) float *scaleMatrix;
-@property (strong, nonatomic) DMColorProvider *colorProvider;
 @end
 
 @implementation DMHeatmapRenderer
@@ -22,9 +21,6 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
 - (id)initWithOverlay:(id <MKOverlay>)overlay
 {
     if (self = [super initWithOverlay:overlay]) {
-        DMHeatmap *heatmap = overlay;
-        DMHeatmapMode overlayMode = heatmap.heatmapMode;
-        self.colorProvider = [DMColorProvider providerForMode:overlayMode];
         _scaleMatrix = malloc(2 * kSBHeatRadiusInPoints * 2 * kSBHeatRadiusInPoints * sizeof(float));
         [self populateScaleMatrix];
     }
@@ -64,7 +60,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
     
     //allocate an array matching the screen point size of the rect
     float *pointValues = calloc(arrayLen, sizeof(float));
-    
+   
     if (pointValues) {
         //pad out the mapRect with the radius on all sides.
         // we care about points that are not in (but close to) this rect
@@ -77,7 +73,8 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         
         //Get the dictionary of values out of the model for this mapRect and zoomScale.
         DMHeatmap *hm = (DMHeatmap *)self.overlay;
-        NSDictionary *heat = [hm mapPointsWithHeatInMapRect:paddedMapRect atScale:zoomScale];
+        NSDictionary *heat = [hm mapPointsWithHeatInMapRect:paddedMapRect
+                                                    atScale:zoomScale];
         
         for (NSValue *key in heat) {
             //convert key to mapPoint
@@ -91,7 +88,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
             CGPoint matrixCoord = CGPointMake((usPoint.x - usRect.origin.x) * zoomScale,
                                               (usPoint.y - usRect.origin.y) * zoomScale);
             
-            if (value != 0) { //don't bother with 0
+            if (value != 0 && !isnan(value)) { //don't bother with 0
                 //iterate through surrounding pixels and increase
                 for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
                     for (int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
@@ -102,7 +99,8 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
                         //make sure this is a valid array index
                         if (row >= 0 && column >= 0 && row < rows && column < columns) {
                             int index = columns * row + column;
-                            pointValues[index] += value * _scaleMatrix[j * 2 * kSBHeatRadiusInPoints + i];
+                            double addVal = value * _scaleMatrix[j * 2 * kSBHeatRadiusInPoints + i];
+                            pointValues[index] += addVal;
                         }
                     }
                 }
@@ -111,16 +109,17 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         
         CGFloat red, green, blue, alpha;
         uint indexOrigin;
-        unsigned char *rgba = (unsigned char *)calloc(columns * rows * 4, sizeof(unsigned char));
-        int arrayLen = columns * rows;
+        unsigned char *rgba = (unsigned char *)calloc(arrayLen * 4, sizeof(unsigned char));
+        DMColorProvider *colorProvider = [hm colorProvider];
         for (int i = 0; i < arrayLen; i++) {
             if (pointValues[i] != 0) {
+//                NSLog(@"pointValues at %d is %f", i, pointValues[i]);
                 indexOrigin = 4 * i;
-                [self.colorProvider colorForValue:pointValues[i]
-                                              red:&red
-                                            green:&green
-                                             blue:&blue
-                                            alpha:&alpha];
+                [colorProvider colorForValue:pointValues[i]
+                                         red:&red
+                                       green:&green
+                                        blue:&blue
+                                       alpha:&alpha];
                 
                 rgba[indexOrigin] = red;
                 rgba[indexOrigin + 1] = green;
@@ -143,14 +142,14 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
        
         CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
         UIImage *img = [UIImage imageWithCGImage:cgImage];
+        UIGraphicsPushContext(context);
+        [img drawInRect:usIntersect];
+        UIGraphicsPopContext();
+        
         CFRelease(cgImage);
         CFRelease(bitmapContext);
         CFRelease(colorSpace);
         free(rgba);
-        
-        UIGraphicsPushContext(context);
-        [img drawInRect:usIntersect];
-        UIGraphicsPopContext();
     }
 }
 
