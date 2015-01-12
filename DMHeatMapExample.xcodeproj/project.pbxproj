@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED07C2811A6427BF006B26CA /* first_week.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C27E1A6427BF006B26CA /* first_week.txt */; };
+		ED07C2821A6427BF006B26CA /* mcdonalds.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C27F1A6427BF006B26CA /* mcdonalds.txt */; };
+		ED07C2831A6427BF006B26CA /* third_week.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C2801A6427BF006B26CA /* third_week.txt */; };
 		ED6E114E1A5F062100D6DB4A /* DMColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */; };
 		ED6E11511A5F06DB00D6DB4A /* DMStandardColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */; };
 		ED6E11541A5F06E700D6DB4A /* DMDiffColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */; };
@@ -20,7 +23,6 @@
 		EDAC95461A5DC9A100E8403E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAC95451A5DC9A100E8403E /* MapKit.framework */; };
 		EDAC954D1A5DC9F000E8403E /* DMHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */; };
 		EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */; };
-		EDAC95501A5DCF2600E8403E /* mcdonalds.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED07C27E1A6427BF006B26CA /* first_week.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = first_week.txt; sourceTree = "<group>"; };
+		ED07C27F1A6427BF006B26CA /* mcdonalds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mcdonalds.txt; sourceTree = "<group>"; };
+		ED07C2801A6427BF006B26CA /* third_week.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = third_week.txt; sourceTree = "<group>"; };
 		ED6E114C1A5F062100D6DB4A /* DMColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMColorProvider.h; sourceTree = "<group>"; };
 		ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMColorProvider.m; sourceTree = "<group>"; };
 		ED6E114F1A5F06DB00D6DB4A /* DMStandardColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMStandardColorProvider.h; sourceTree = "<group>"; };
@@ -58,7 +63,6 @@
 		EDAC954A1A5DC9F000E8403E /* DMHeatmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmap.m; sourceTree = "<group>"; };
 		EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeatmapRenderer.h; sourceTree = "<group>"; };
 		EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmapRenderer.m; sourceTree = "<group>"; };
-		EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mcdonalds.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED07C27D1A6427BF006B26CA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ED07C27E1A6427BF006B26CA /* first_week.txt */,
+				ED07C27F1A6427BF006B26CA /* mcdonalds.txt */,
+				ED07C2801A6427BF006B26CA /* third_week.txt */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		ED6E114B1A5F052300D6DB4A /* Color Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +130,7 @@
 		EDAC951E1A5DC8FE00E8403E /* DMHeatMapExample */ = {
 			isa = PBXGroup;
 			children = (
-				EDAC954F1A5DCF2600E8403E /* mcdonalds.txt */,
+				ED07C27D1A6427BF006B26CA /* Data */,
 				EDAC95231A5DC8FE00E8403E /* AppDelegate.h */,
 				EDAC95241A5DC8FE00E8403E /* AppDelegate.m */,
 				EDAC95261A5DC8FE00E8403E /* ViewController.h */,
@@ -255,10 +269,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDAC95501A5DCF2600E8403E /* mcdonalds.txt in Resources */,
 				EDAC952B1A5DC8FE00E8403E /* Main.storyboard in Resources */,
 				EDAC95301A5DC8FE00E8403E /* LaunchScreen.xib in Resources */,
 				EDAC952D1A5DC8FE00E8403E /* Images.xcassets in Resources */,
+				ED07C2821A6427BF006B26CA /* mcdonalds.txt in Resources */,
+				ED07C2831A6427BF006B26CA /* third_week.txt in Resources */,
+				ED07C2811A6427BF006B26CA /* first_week.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
