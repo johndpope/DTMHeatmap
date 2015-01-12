@@ -28,6 +28,11 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
     return self;
 }
 
+- (void)dealloc
+{
+    free(_scaleMatrix);
+}
+
 - (void)populateScaleMatrix
 {
     for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
@@ -58,11 +63,11 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
     int rows = ceil(CGRectGetHeight(usRect) * zoomScale);
     int arrayLen = columns * rows;
     
-    //allocate an array matching the screen point size of the rect
+    // allocate an array matching the screen point size of the rect
     float *pointValues = calloc(arrayLen, sizeof(float));
    
     if (pointValues) {
-        //pad out the mapRect with the radius on all sides.
+        // pad out the mapRect with the radius on all sides.
         // we care about points that are not in (but close to) this rect
         CGRect paddedRect = [self rectForMapRect:mapRect];
         paddedRect.origin.x -= kSBHeatRadiusInPoints / zoomScale;
@@ -71,32 +76,32 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         paddedRect.size.height += 2 * kSBHeatRadiusInPoints / zoomScale;
         MKMapRect paddedMapRect = [self mapRectForRect:paddedRect];
         
-        //Get the dictionary of values out of the model for this mapRect and zoomScale.
+        // Get the dictionary of values out of the model for this mapRect and zoomScale.
         DMHeatmap *hm = (DMHeatmap *)self.overlay;
         NSDictionary *heat = [hm mapPointsWithHeatInMapRect:paddedMapRect
                                                     atScale:zoomScale];
         
         for (NSValue *key in heat) {
-            //convert key to mapPoint
+            // convert key to mapPoint
             MKMapPoint mapPoint;
             [key getValue:&mapPoint];
             double value = [[heat objectForKey:key] doubleValue];
             
-            //figure out the correspoinding array index
+            // figure out the correspoinding array index
             CGPoint usPoint = [self pointForMapPoint:mapPoint];
             
             CGPoint matrixCoord = CGPointMake((usPoint.x - usRect.origin.x) * zoomScale,
                                               (usPoint.y - usRect.origin.y) * zoomScale);
             
-            if (value != 0 && !isnan(value)) { //don't bother with 0
-                //iterate through surrounding pixels and increase
+            if (value != 0 && !isnan(value)) { // don't bother with 0 or NaN
+                // iterate through surrounding pixels and increase
                 for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
                     for (int j = 0; j < 2 * kSBHeatRadiusInPoints; j++) {
-                        //find the array index
+                        // find the array index
                         int column = floor(matrixCoord.x - kSBHeatRadiusInPoints + i);
                         int row = floor(matrixCoord.y - kSBHeatRadiusInPoints + j);
                         
-                        //make sure this is a valid array index
+                        // make sure this is a valid array index
                         if (row >= 0 && column >= 0 && row < rows && column < columns) {
                             int index = columns * row + column;
                             double addVal = value * _scaleMatrix[j * 2 * kSBHeatRadiusInPoints + i];
@@ -113,7 +118,6 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         DMColorProvider *colorProvider = [hm colorProvider];
         for (int i = 0; i < arrayLen; i++) {
             if (pointValues[i] != 0) {
-//                NSLog(@"pointValues at %d is %f", i, pointValues[i]);
                 indexOrigin = 4 * i;
                 [colorProvider colorForValue:pointValues[i]
                                          red:&red
@@ -151,11 +155,6 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         CFRelease(colorSpace);
         free(rgba);
     }
-}
-
-- (void)dealloc
-{
-    free(_scaleMatrix);
 }
 
 @end
