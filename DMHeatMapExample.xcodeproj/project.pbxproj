@@ -13,9 +13,9 @@
 		ED07C2871A642942006B26CA /* DMBaseHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07C2861A642942006B26CA /* DMBaseHeatmap.m */; };
 		ED07C28A1A64299B006B26CA /* DMDiffHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07C2891A64299B006B26CA /* DMDiffHeatmap.m */; };
 		ED07C28D1A642B1E006B26CA /* DMHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07C28C1A642B1E006B26CA /* DMHeatmap.m */; };
-		ED6E114E1A5F062100D6DB4A /* DMColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */; };
-		ED6E11511A5F06DB00D6DB4A /* DMStandardColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */; };
-		ED6E11541A5F06E700D6DB4A /* DMDiffColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */; };
+		ED0BBA071A65B3A900110424 /* DMColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0BBA021A65B3A900110424 /* DMColorProvider.m */; };
+		ED0BBA081A65B3A900110424 /* DMDiffColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0BBA041A65B3A900110424 /* DMDiffColorProvider.m */; };
+		ED0BBA091A65B3A900110424 /* DMStandardColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0BBA061A65B3A900110424 /* DMStandardColorProvider.m */; };
 		EDAC95221A5DC8FE00E8403E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95211A5DC8FE00E8403E /* main.m */; };
 		EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95241A5DC8FE00E8403E /* AppDelegate.m */; };
 		EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95271A5DC8FE00E8403E /* ViewController.m */; };
@@ -47,12 +47,12 @@
 		ED07C2891A64299B006B26CA /* DMDiffHeatmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDiffHeatmap.m; sourceTree = "<group>"; };
 		ED07C28B1A642B1E006B26CA /* DMHeatmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeatmap.h; sourceTree = "<group>"; };
 		ED07C28C1A642B1E006B26CA /* DMHeatmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmap.m; sourceTree = "<group>"; };
-		ED6E114C1A5F062100D6DB4A /* DMColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMColorProvider.h; sourceTree = "<group>"; };
-		ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMColorProvider.m; sourceTree = "<group>"; };
-		ED6E114F1A5F06DB00D6DB4A /* DMStandardColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMStandardColorProvider.h; sourceTree = "<group>"; };
-		ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMStandardColorProvider.m; sourceTree = "<group>"; };
-		ED6E11521A5F06E700D6DB4A /* DMDiffColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDiffColorProvider.h; sourceTree = "<group>"; };
-		ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDiffColorProvider.m; sourceTree = "<group>"; };
+		ED0BBA011A65B3A900110424 /* DMColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMColorProvider.h; path = "Color Providers/DMColorProvider.h"; sourceTree = "<group>"; };
+		ED0BBA021A65B3A900110424 /* DMColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMColorProvider.m; path = "Color Providers/DMColorProvider.m"; sourceTree = "<group>"; };
+		ED0BBA031A65B3A900110424 /* DMDiffColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMDiffColorProvider.h; path = "Color Providers/DMDiffColorProvider.h"; sourceTree = "<group>"; };
+		ED0BBA041A65B3A900110424 /* DMDiffColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMDiffColorProvider.m; path = "Color Providers/DMDiffColorProvider.m"; sourceTree = "<group>"; };
+		ED0BBA051A65B3A900110424 /* DMStandardColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMStandardColorProvider.h; path = "Color Providers/DMStandardColorProvider.h"; sourceTree = "<group>"; };
+		ED0BBA061A65B3A900110424 /* DMStandardColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMStandardColorProvider.m; path = "Color Providers/DMStandardColorProvider.m"; sourceTree = "<group>"; };
 		EDAC951C1A5DC8FE00E8403E /* DMHeatMapExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMHeatMapExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAC95201A5DC8FE00E8403E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAC95211A5DC8FE00E8403E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -117,12 +117,12 @@
 		ED6E114B1A5F052300D6DB4A /* Color Providers */ = {
 			isa = PBXGroup;
 			children = (
-				ED6E114C1A5F062100D6DB4A /* DMColorProvider.h */,
-				ED6E114D1A5F062100D6DB4A /* DMColorProvider.m */,
-				ED6E114F1A5F06DB00D6DB4A /* DMStandardColorProvider.h */,
-				ED6E11501A5F06DB00D6DB4A /* DMStandardColorProvider.m */,
-				ED6E11521A5F06E700D6DB4A /* DMDiffColorProvider.h */,
-				ED6E11531A5F06E700D6DB4A /* DMDiffColorProvider.m */,
+				ED0BBA011A65B3A900110424 /* DMColorProvider.h */,
+				ED0BBA021A65B3A900110424 /* DMColorProvider.m */,
+				ED0BBA031A65B3A900110424 /* DMDiffColorProvider.h */,
+				ED0BBA041A65B3A900110424 /* DMDiffColorProvider.m */,
+				ED0BBA051A65B3A900110424 /* DMStandardColorProvider.h */,
+				ED0BBA061A65B3A900110424 /* DMStandardColorProvider.m */,
 			);
 			name = "Color Providers";
 			sourceTree = "<group>";
@@ -312,12 +312,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED07C2871A642942006B26CA /* DMBaseHeatmap.m in Sources */,
+				ED0BBA091A65B3A900110424 /* DMStandardColorProvider.m in Sources */,
 				EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */,
 				EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */,
-				ED6E11511A5F06DB00D6DB4A /* DMStandardColorProvider.m in Sources */,
-				ED6E114E1A5F062100D6DB4A /* DMColorProvider.m in Sources */,
 				ED07C28D1A642B1E006B26CA /* DMHeatmap.m in Sources */,
-				ED6E11541A5F06E700D6DB4A /* DMDiffColorProvider.m in Sources */,
+				ED0BBA071A65B3A900110424 /* DMColorProvider.m in Sources */,
+				ED0BBA081A65B3A900110424 /* DMDiffColorProvider.m in Sources */,
 				EDAC95221A5DC8FE00E8403E /* main.m in Sources */,
 				EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */,
 				ED07C28A1A64299B006B26CA /* DMDiffHeatmap.m in Sources */,
