@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "DMHeatmapRenderer.h"
-#import "DMHeatmap.h"
 #import "DMDiffHeatmap.h"
 
 @interface ViewController ()
@@ -31,9 +30,9 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(3.0, 3.0);
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(40.4, -74.4);
     
-//    self.heatmap = [DMHeatmap new];
-//    [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
-//    [self.mapView addOverlay:self.heatmap];
+    self.heatmap = [DMHeatmap new];
+    [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
+    [self.mapView addOverlay:self.heatmap];
     
     span = MKCoordinateSpanMake(1.0, 1.0);
     center = CLLocationCoordinate2DMake(38.5556, -121.4689);
@@ -41,7 +40,7 @@
     self.diffHeatmap = [DMDiffHeatmap new];
     [self.diffHeatmap setBeforeData:[self parseLatLonFile:@"first_week"]
                           afterData:[self parseLatLonFile:@"third_week"]];
-    [self.mapView addOverlay:self.diffHeatmap];
+//    [self.mapView addOverlay:self.diffHeatmap];
 }
 
 - (NSDictionary *)parseLatLonFile:(NSString *)fileName

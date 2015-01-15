@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Dataminr. All rights reserved.
 //
 
-#import "DMBaseHeatmap.h"
+#import "DMHeatmap.h"
 
-@interface DMDiffHeatmap : DMBaseHeatmap
+@interface DMDiffHeatmap : DMHeatmap
 
 - (void)setBeforeData:(NSDictionary *)before
             afterData:(NSDictionary *)after;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DMHeatmap.h"
 
 // These affect the transparency of the heatmap
 // Colder areas will be more transparent

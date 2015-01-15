@@ -7,7 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "DMBaseHeatmap.h"
+#import "DMHeatmap.h"
 
 @interface DMHeatmapRenderer : MKOverlayRenderer
 
