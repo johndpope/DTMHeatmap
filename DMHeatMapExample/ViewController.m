@@ -74,6 +74,20 @@
     return ret;
 }
 
+- (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self.mapView removeOverlay:self.diffHeatmap];
+            [self.mapView addOverlay:self.heatmap];
+            break;
+        case 1:
+            [self.mapView addOverlay:self.diffHeatmap];
+            [self.mapView removeOverlay:self.heatmap];
+            break;
+    }
+}
+
 #pragma mark - MKMapViewDelegate
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
