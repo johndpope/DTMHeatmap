@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDAC951B1A5DC8FE00E8403E"
-               BuildableName = "DMHeatMapExample.app"
-               BlueprintName = "DMHeatMapExample"
-               ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+               BuildableName = "DMHeatmapExample.app"
+               BlueprintName = "DMHeatmapExample"
+               ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "EDAC95341A5DC8FE00E8403E"
                BuildableName = "DMHeatMapExampleTests.xctest"
                BlueprintName = "DMHeatMapExampleTests"
-               ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+               ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "EDAC95341A5DC8FE00E8403E"
                BuildableName = "DMHeatMapExampleTests.xctest"
                BlueprintName = "DMHeatMapExampleTests"
-               ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+               ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAC951B1A5DC8FE00E8403E"
-            BuildableName = "DMHeatMapExample.app"
-            BlueprintName = "DMHeatMapExample"
-            ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+            BuildableName = "DMHeatmapExample.app"
+            BlueprintName = "DMHeatmapExample"
+            ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAC951B1A5DC8FE00E8403E"
-            BuildableName = "DMHeatMapExample.app"
-            BlueprintName = "DMHeatMapExample"
-            ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+            BuildableName = "DMHeatmapExample.app"
+            BlueprintName = "DMHeatmapExample"
+            ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAC951B1A5DC8FE00E8403E"
-            BuildableName = "DMHeatMapExample.app"
-            BlueprintName = "DMHeatMapExample"
-            ReferencedContainer = "container:DMHeatMapExample.xcodeproj">
+            BuildableName = "DMHeatmapExample.app"
+            BlueprintName = "DMHeatmapExample"
+            ReferencedContainer = "container:DMHeatmapExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

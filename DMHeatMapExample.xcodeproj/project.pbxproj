@@ -20,20 +20,9 @@
 		EDAC952B1A5DC8FE00E8403E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAC95291A5DC8FE00E8403E /* Main.storyboard */; };
 		EDAC952D1A5DC8FE00E8403E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAC952C1A5DC8FE00E8403E /* Images.xcassets */; };
 		EDAC95301A5DC8FE00E8403E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDAC952E1A5DC8FE00E8403E /* LaunchScreen.xib */; };
-		EDAC953C1A5DC8FE00E8403E /* DMHeatMapExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC953B1A5DC8FE00E8403E /* DMHeatMapExampleTests.m */; };
 		EDAC95461A5DC9A100E8403E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAC95451A5DC9A100E8403E /* MapKit.framework */; };
 		EDAC954E1A5DC9F000E8403E /* DMHeatmapRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EDAC95361A5DC8FE00E8403E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDAC95141A5DC8FE00E8403E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDAC951B1A5DC8FE00E8403E;
-			remoteInfo = DMHeatMapExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		ED07C27E1A6427BF006B26CA /* first_week.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = first_week.txt; sourceTree = "<group>"; };
@@ -57,9 +46,6 @@
 		EDAC952A1A5DC8FE00E8403E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDAC952C1A5DC8FE00E8403E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EDAC952F1A5DC8FE00E8403E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		EDAC95351A5DC8FE00E8403E /* DMHeatMapExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DMHeatMapExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDAC953A1A5DC8FE00E8403E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDAC953B1A5DC8FE00E8403E /* DMHeatMapExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMHeatMapExampleTests.m; sourceTree = "<group>"; };
 		EDAC95451A5DC9A100E8403E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeatmapRenderer.h; sourceTree = "<group>"; };
 		EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeatmapRenderer.m; sourceTree = "<group>"; };
@@ -71,13 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDAC95461A5DC9A100E8403E /* MapKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAC95321A5DC8FE00E8403E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +99,8 @@
 		EDAC95131A5DC8FE00E8403E = {
 			isa = PBXGroup;
 			children = (
-				EDAC95481A5DC9DE00E8403E /* HeatMap */,
-				EDAC951E1A5DC8FE00E8403E /* DMHeatMapExample */,
-				EDAC95381A5DC8FE00E8403E /* DMHeatMapExampleTests */,
+				EDAC95481A5DC9DE00E8403E /* Heatmap */,
+				EDAC951E1A5DC8FE00E8403E /* DMHeatmapExample */,
 				EDAC95471A5DC9CB00E8403E /* Frameworks */,
 				EDAC951D1A5DC8FE00E8403E /* Products */,
 			);
@@ -132,12 +110,11 @@
 			isa = PBXGroup;
 			children = (
 				EDAC951C1A5DC8FE00E8403E /* DMHeatMapExample.app */,
-				EDAC95351A5DC8FE00E8403E /* DMHeatMapExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EDAC951E1A5DC8FE00E8403E /* DMHeatMapExample */ = {
+		EDAC951E1A5DC8FE00E8403E /* DMHeatmapExample */ = {
 			isa = PBXGroup;
 			children = (
 				ED07C27D1A6427BF006B26CA /* Sample Data */,
@@ -150,6 +127,7 @@
 				EDAC952E1A5DC8FE00E8403E /* LaunchScreen.xib */,
 				EDAC951F1A5DC8FE00E8403E /* Supporting Files */,
 			);
+			name = DMHeatmapExample;
 			path = DMHeatMapExample;
 			sourceTree = "<group>";
 		};
@@ -162,23 +140,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EDAC95381A5DC8FE00E8403E /* DMHeatMapExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				EDAC953B1A5DC8FE00E8403E /* DMHeatMapExampleTests.m */,
-				EDAC95391A5DC8FE00E8403E /* Supporting Files */,
-			);
-			path = DMHeatMapExampleTests;
-			sourceTree = "<group>";
-		};
-		EDAC95391A5DC8FE00E8403E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EDAC953A1A5DC8FE00E8403E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		EDAC95471A5DC9CB00E8403E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +148,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EDAC95481A5DC9DE00E8403E /* HeatMap */ = {
+		EDAC95481A5DC9DE00E8403E /* Heatmap */ = {
 			isa = PBXGroup;
 			children = (
 				ED6E114B1A5F052300D6DB4A /* Color Providers */,
@@ -195,15 +156,15 @@
 				EDAC954B1A5DC9F000E8403E /* DMHeatmapRenderer.h */,
 				EDAC954C1A5DC9F000E8403E /* DMHeatmapRenderer.m */,
 			);
-			name = HeatMap;
+			name = Heatmap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EDAC951B1A5DC8FE00E8403E /* DMHeatMapExample */ = {
+		EDAC951B1A5DC8FE00E8403E /* DMHeatmapExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDAC953F1A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatMapExample" */;
+			buildConfigurationList = EDAC953F1A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatmapExample" */;
 			buildPhases = (
 				EDAC95181A5DC8FE00E8403E /* Sources */,
 				EDAC95191A5DC8FE00E8403E /* Frameworks */,
@@ -213,28 +174,10 @@
 			);
 			dependencies = (
 			);
-			name = DMHeatMapExample;
+			name = DMHeatmapExample;
 			productName = DMHeatMapExample;
 			productReference = EDAC951C1A5DC8FE00E8403E /* DMHeatMapExample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		EDAC95341A5DC8FE00E8403E /* DMHeatMapExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDAC95421A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatMapExampleTests" */;
-			buildPhases = (
-				EDAC95311A5DC8FE00E8403E /* Sources */,
-				EDAC95321A5DC8FE00E8403E /* Frameworks */,
-				EDAC95331A5DC8FE00E8403E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EDAC95371A5DC8FE00E8403E /* PBXTargetDependency */,
-			);
-			name = DMHeatMapExampleTests;
-			productName = DMHeatMapExampleTests;
-			productReference = EDAC95351A5DC8FE00E8403E /* DMHeatMapExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -248,13 +191,9 @@
 					EDAC951B1A5DC8FE00E8403E = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					EDAC95341A5DC8FE00E8403E = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = EDAC951B1A5DC8FE00E8403E;
-					};
 				};
 			};
-			buildConfigurationList = EDAC95171A5DC8FE00E8403E /* Build configuration list for PBXProject "DMHeatMapExample" */;
+			buildConfigurationList = EDAC95171A5DC8FE00E8403E /* Build configuration list for PBXProject "DMHeatmapExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -267,8 +206,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDAC951B1A5DC8FE00E8403E /* DMHeatMapExample */,
-				EDAC95341A5DC8FE00E8403E /* DMHeatMapExampleTests */,
+				EDAC951B1A5DC8FE00E8403E /* DMHeatmapExample */,
 			);
 		};
 /* End PBXProject section */
@@ -284,13 +222,6 @@
 				ED07C2821A6427BF006B26CA /* mcdonalds.txt in Resources */,
 				ED07C2831A6427BF006B26CA /* third_week.txt in Resources */,
 				ED07C2811A6427BF006B26CA /* first_week.txt in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAC95331A5DC8FE00E8403E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,23 +243,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDAC95311A5DC8FE00E8403E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDAC953C1A5DC8FE00E8403E /* DMHeatMapExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EDAC95371A5DC8FE00E8403E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDAC951B1A5DC8FE00E8403E /* DMHeatMapExample */;
-			targetProxy = EDAC95361A5DC8FE00E8403E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EDAC95291A5DC8FE00E8403E /* Main.storyboard */ = {
@@ -446,44 +361,10 @@
 			};
 			name = Release;
 		};
-		EDAC95431A5DC8FE00E8403E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DMHeatMapExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DMHeatMapExample.app/DMHeatMapExample";
-			};
-			name = Debug;
-		};
-		EDAC95441A5DC8FE00E8403E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DMHeatMapExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DMHeatMapExample.app/DMHeatMapExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDAC95171A5DC8FE00E8403E /* Build configuration list for PBXProject "DMHeatMapExample" */ = {
+		EDAC95171A5DC8FE00E8403E /* Build configuration list for PBXProject "DMHeatmapExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDAC953D1A5DC8FE00E8403E /* Debug */,
@@ -492,20 +373,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDAC953F1A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatMapExample" */ = {
+		EDAC953F1A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatmapExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDAC95401A5DC8FE00E8403E /* Debug */,
 				EDAC95411A5DC8FE00E8403E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EDAC95421A5DC8FE00E8403E /* Build configuration list for PBXNativeTarget "DMHeatMapExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDAC95431A5DC8FE00E8403E /* Debug */,
-				EDAC95441A5DC8FE00E8403E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
