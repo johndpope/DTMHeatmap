@@ -48,7 +48,7 @@ In the simplest form, the code looks something like this:
 }
 ```
 
-As you can see, the only difference between the stanard heatmap API and that of the diff heatmap is that the diff heatmap requires two sets of data.
+As you can see, the only difference between the stanard heatmap API and that of the diff heatmap is that the diff heatmap requires two sets of data – before and after.
 
 ## Example Project
 A sample project has been provided to demonstrate basic usage. There are currently four visualization options:

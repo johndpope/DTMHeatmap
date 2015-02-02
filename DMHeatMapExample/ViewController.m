@@ -20,11 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setupStandardHeatmap];
+    [self setupHeatmaps];
 }
 
-- (void)setupStandardHeatmap
+- (void)setupHeatmaps
 {
     // Set map region
     MKCoordinateSpan span = MKCoordinateSpanMake(1.0, 1.0);
