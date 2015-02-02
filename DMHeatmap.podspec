@@ -8,6 +8,6 @@ Pod::Spec.new do |s|
   s.social_media_url = "http://twitter.com/moltman"
   s.platform     = :ios
   s.source       = { :git => "https://github.com/dataminr/DMHeatmap.git", :tag => '1' }
-  s.source_files  = '*.{h,m}', 'Heatmaps/*'
+  s.source_files  = '*.{h,m}', 'Heatmaps/*', 'Color Providers/*'
   s.requires_arc = true
 end
