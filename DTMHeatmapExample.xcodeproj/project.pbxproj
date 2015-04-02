@@ -14,7 +14,6 @@
 		ED07C28A1A64299B006B26CA /* DTMDiffHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07C2891A64299B006B26CA /* DTMDiffHeatmap.m */; };
 		ED0BBA071A65B3A900110424 /* DTMColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0BBA021A65B3A900110424 /* DTMColorProvider.m */; };
 		ED0BBA081A65B3A900110424 /* DTMDiffColorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0BBA041A65B3A900110424 /* DTMDiffColorProvider.m */; };
-		ED7B17D91ACDF037004A815A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7B17D81ACDF037004A815A /* Default-568h@2x.png */; };
 		EDAC95221A5DC8FE00E8403E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95211A5DC8FE00E8403E /* main.m */; };
 		EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95241A5DC8FE00E8403E /* AppDelegate.m */; };
 		EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAC95271A5DC8FE00E8403E /* ViewController.m */; };
@@ -37,7 +36,6 @@
 		ED0BBA021A65B3A900110424 /* DTMColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTMColorProvider.m; path = "Color Providers/DTMColorProvider.m"; sourceTree = "<group>"; };
 		ED0BBA031A65B3A900110424 /* DTMDiffColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTMDiffColorProvider.h; path = "Color Providers/DTMDiffColorProvider.h"; sourceTree = "<group>"; };
 		ED0BBA041A65B3A900110424 /* DTMDiffColorProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTMDiffColorProvider.m; path = "Color Providers/DTMDiffColorProvider.m"; sourceTree = "<group>"; };
-		ED7B17D81ACDF037004A815A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EDAC951C1A5DC8FE00E8403E /* DTMHeatmapExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTMHeatmapExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAC95201A5DC8FE00E8403E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAC95211A5DC8FE00E8403E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		EDAC95131A5DC8FE00E8403E = {
 			isa = PBXGroup;
 			children = (
-				ED7B17D81ACDF037004A815A /* Default-568h@2x.png */,
 				EDAC95481A5DC9DE00E8403E /* Heatmap */,
 				EDAC951E1A5DC8FE00E8403E /* DTMHeatmapExample */,
 				EDAC95471A5DC9CB00E8403E /* Frameworks */,
@@ -224,7 +221,6 @@
 				EDAC952D1A5DC8FE00E8403E /* Images.xcassets in Resources */,
 				ED07C2821A6427BF006B26CA /* mcdonalds.txt in Resources */,
 				ED07C2831A6427BF006B26CA /* third_week.txt in Resources */,
-				ED7B17D91ACDF037004A815A /* Default-568h@2x.png in Resources */,
 				ED07C2811A6427BF006B26CA /* first_week.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
