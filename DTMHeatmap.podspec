@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DTMHeatmap"
-  s.version      = "1"
+  s.version      = "1.0"
   s.summary      = "An MKMapView overlay to visualize location data"
   s.homepage     = "https://github.com/dataminr/DMHeatmap"
   s.license          = 'MIT'
