@@ -1,5 +1,5 @@
 //
-//  DMHeatmapRenderer.h
+//  DTMHeatmapRenderer.h
 //  HeatMapTest
 //
 //  Created by Bryan Oltman on 1/6/15.
@@ -7,8 +7,8 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "DMHeatmap.h"
+#import "DTMHeatmap.h"
 
-@interface DMHeatmapRenderer : MKOverlayRenderer
+@interface DTMHeatmapRenderer : MKOverlayRenderer
 
 @end

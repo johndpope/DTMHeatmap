@@ -1,15 +1,15 @@
 //
-//  DMHeatmap.m
+//  DTMHeatmap.m
 //  HeatMapTest
 //
 //  Created by Bryan Oltman on 1/6/15.
 //  Copyright (c) 2015 Bryan Oltman. All rights reserved.
 //
 
-#import "DMHeatmap.h"
-#import "DMColorProvider.h"
+#import "DTMHeatmap.h"
+#import "DTMColorProvider.h"
 
-@interface DMHeatmap ()
+@interface DTMHeatmap ()
 @property double maxValue;
 @property double zoomedOutMax;
 @property NSDictionary *pointsWithHeat;
@@ -17,7 +17,7 @@
 @property MKMapRect boundingRect;
 @end
 
-@implementation DMHeatmap
+@implementation DTMHeatmap
 
 @synthesize maxValue, pointsWithHeat = _pointsWithHeat;
 @synthesize zoomedOutMax;
@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-        self.colorProvider = [DMColorProvider new];
+        self.colorProvider = [DTMColorProvider new];
     }
     return self;
 }

@@ -1,14 +1,14 @@
 //
-//  DMDiffColorProvider.m
-//  DMHeatMapExample
+//  DTMDiffColorProvider.m
+//  DTMHeatMapExample
 //
 //  Created by Bryan Oltman on 1/8/15.
 //  Copyright (c) 2015 Bryan Oltman. All rights reserved.
 //
 
-#import "DMDiffColorProvider.h"
+#import "DTMDiffColorProvider.h"
 
-@implementation DMDiffColorProvider
+@implementation DTMDiffColorProvider
 
 - (void)colorForValue:(double)value
                   red:(CGFloat *)red

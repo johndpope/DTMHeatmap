@@ -1,18 +1,18 @@
 //
 //  ViewController.m
-//  DMHeatMapExample
+//  DTMHeatMapExample
 //
 //  Created by Bryan Oltman on 1/7/15.
 //  Copyright (c) 2015 Dataminr. All rights reserved.
 //
 
 #import "ViewController.h"
-#import "DMHeatmapRenderer.h"
-#import "DMDiffHeatmap.h"
+#import "DTMHeatmapRenderer.h"
+#import "DTMDiffHeatmap.h"
 
 @interface ViewController ()
-@property (strong, nonatomic) DMHeatmap *heatmap;
-@property (strong, nonatomic) DMDiffHeatmap *diffHeatmap;
+@property (strong, nonatomic) DTMHeatmap *heatmap;
+@property (strong, nonatomic) DTMDiffHeatmap *diffHeatmap;
 @end
 
 @implementation ViewController
@@ -30,11 +30,11 @@
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(38.5556, -121.4689);
     self.mapView.region = MKCoordinateRegionMake(center, span);
     
-    self.heatmap = [DMHeatmap new];
+    self.heatmap = [DTMHeatmap new];
     [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
     [self.mapView addOverlay:self.heatmap];
 
-    self.diffHeatmap = [DMDiffHeatmap new];
+    self.diffHeatmap = [DTMDiffHeatmap new];
     [self.diffHeatmap setBeforeData:[self parseLatLonFile:@"first_week"]
                           afterData:[self parseLatLonFile:@"third_week"]];
 }
@@ -98,7 +98,7 @@
 #pragma mark - MKMapViewDelegate
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
-    return [[DMHeatmapRenderer alloc] initWithOverlay:overlay];
+    return [[DTMHeatmapRenderer alloc] initWithOverlay:overlay];
 }
 
 @end

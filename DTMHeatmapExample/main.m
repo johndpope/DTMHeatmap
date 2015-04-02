@@ -1,6 +1,6 @@
 //
 //  main.m
-//  DMHeatMapExample
+//  DTMHeatMapExample
 //
 //  Created by Bryan Oltman on 1/7/15.
 //  Copyright (c) 2015 Bryan Oltman. All rights reserved.

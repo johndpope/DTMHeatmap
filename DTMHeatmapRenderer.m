@@ -1,22 +1,22 @@
 //
-//  DMHeatmapRenderer.m
+//  DTMHeatmapRenderer.m
 //  HeatMapTest
 //
 //  Created by Bryan Oltman on 1/6/15.
 //  Copyright (c) 2015 Bryan Oltman. All rights reserved.
 //
 
-#import "DMHeatmapRenderer.h"
-#import "DMColorProvider.h"
+#import "DTMHeatmapRenderer.h"
+#import "DTMColorProvider.h"
 
 // This sets the spread of the heat from each map point (in screen pts.)
 static const NSInteger kSBHeatRadiusInPoints = 48;
 
-@interface DMHeatmapRenderer ()
+@interface DTMHeatmapRenderer ()
 @property (nonatomic, readonly) float *scaleMatrix;
 @end
 
-@implementation DMHeatmapRenderer
+@implementation DTMHeatmapRenderer
 
 - (id)initWithOverlay:(id <MKOverlay>)overlay
 {
@@ -77,7 +77,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         MKMapRect paddedMapRect = [self mapRectForRect:paddedRect];
         
         // Get the dictionary of values out of the model for this mapRect and zoomScale.
-        DMHeatmap *hm = (DMHeatmap *)self.overlay;
+        DTMHeatmap *hm = (DTMHeatmap *)self.overlay;
         NSDictionary *heat = [hm mapPointsWithHeatInMapRect:paddedMapRect
                                                     atScale:zoomScale];
         
@@ -115,7 +115,7 @@ static const NSInteger kSBHeatRadiusInPoints = 48;
         CGFloat red, green, blue, alpha;
         uint indexOrigin;
         unsigned char *rgba = (unsigned char *)calloc(arrayLen * 4, sizeof(unsigned char));
-        DMColorProvider *colorProvider = [hm colorProvider];
+        DTMColorProvider *colorProvider = [hm colorProvider];
         for (int i = 0; i < arrayLen; i++) {
             if (pointValues[i] != 0) {
                 indexOrigin = 4 * i;
