@@ -1,4 +1,4 @@
-# DMHeatmapExample
+# DTMHeatmapExample
 A heatmap for iOS, implemented as an `MKOverlay` to provide seamless integration with MapKit.
 
 This project is based on https://github.com/ryanolsonk/HeatMapDemo. It has been updated to improve performance and add a "diff" mode. https://github.com/gpolak/LFHeatMap was also referenced.
@@ -10,15 +10,15 @@ This mode is a standard heatmap and should produce the same results as the origi
 This mode compares two sets of data to visualize which areas have "heated up" and which have "cooled down". Increased activity is shown with warm colors, decreased activity is shown with cool colors.
 
 ## Installation
-The easiest way to get `DMHeatmap` is via [Cocoapods](http://cocoapods.org/)
+The easiest way to get `DTMHeatmap` is via [Cocoapods](http://cocoapods.org/)
 ```
-pod 'DMHeatmap'
+pod 'DTMHeatmap'
 ```
 
 ## Usage
-Using `DMHeatmap` is relatively straightforward. After installing using the instructions above:
+Using `DTMHeatmap` is relatively straightforward. After installing using the instructions above:
 0. Register as a delegate of your map view
-1. Create an instance of `DMHeatmap`
+1. Create an instance of `DTMHeatmap`
 2. Provide data in the form of a dictionary mapping `MKMapPoint` (wrapped in `NSValue` using `[NSValue value:&point withObjCType:@encode(MKMapPoint)]`) to weights
 3. Add the heatmap as an overlay to your map view.
 
@@ -28,14 +28,14 @@ In the simplest form, the code looks something like this:
 {
     self.mapView.delegate = self;
 
-    // Create DMHeatmap
-    self.heatmap = [DMHeatmap new];
+    // Create DTMHeatmap
+    self.heatmap = [DTMHeatmap new];
     [self.heatmap setData:myData];
     [self.mapView addOverlay:self.heatmap];
 
     // or...
-    // Create DMDiffHeatmap
-    self.diffHeatmap = [DMDiffHeatmap new];
+    // Create DTMDiffHeatmap
+    self.diffHeatmap = [DTMDiffHeatmap new];
     [self.diffHeatmap setBeforeData:beforeData
                           afterData:afterData];
     [self.mapView addOverlay:self.diffHeatmap];
@@ -44,7 +44,7 @@ In the simplest form, the code looks something like this:
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView
             rendererForOverlay:(id<MKOverlay>)overlay
 {
-    return [[DMHeatmapRenderer alloc] initWithOverlay:overlay];
+    return [[DTMHeatmapRenderer alloc] initWithOverlay:overlay];
 }
 ```
 
