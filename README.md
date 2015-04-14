@@ -5,8 +5,14 @@ This project is based on https://github.com/ryanolsonk/HeatMapDemo. It has been 
 
 ## Modes
 ### Standard
+
+<img src="./DTMHeatmapExample/Images/heatmap.gif" />
+
 This mode is a standard heatmap and should produce the same results as the original `HeatMapDemo` project, but more quickly.
 ### Diff
+
+<img src="./DTMHeatmapExample/Images/diff-heatmap.gif" />
+
 This mode compares two sets of data to visualize which areas have "heated up" and which have "cooled down". Increased activity is shown with warm colors, decreased activity is shown with cool colors.
 
 ## Installation
