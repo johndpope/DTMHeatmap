@@ -6,7 +6,7 @@ This project is based on https://github.com/ryanolsonk/HeatMapDemo. It has been 
 ## Modes
 ### Standard
 
-<img src="./DTMHeatmapExample/Images/heatmap.gif" />
+<img src="./DTMHeatmapExample/Images/std-heatmap.gif" />
 
 This mode is a standard heatmap and should produce the same results as the original `HeatMapDemo` project, but more quickly.
 ### Diff
