@@ -1,4 +1,4 @@
-# DTMHeatmapExample
+# DTMHeatmap
 A heatmap for iOS, implemented as an `MKOverlay` to provide seamless integration with MapKit.
 
 This project is based on https://github.com/ryanolsonk/HeatMapDemo. It has been updated to improve performance and add a "diff" mode. https://github.com/gpolak/LFHeatMap was also referenced.
@@ -51,7 +51,7 @@ In the simplest form, the code looks something like this:
 As you can see, the only difference between the stanard heatmap API and that of the diff heatmap is that the diff heatmap requires two sets of data – before and after.
 
 ## Example Project
-A sample project has been provided to demonstrate basic usage. There are currently four visualization options:
+A sample project (`DTMHeatmapExample`) has been provided to demonstrate basic usage. There are currently four visualization options:
 - Standard: shows US locations of McDonald's as a regular heatmap
 - Week 1: shows Sacramento crime data for the first week of January 2006 as a regular heatmap
 - Week 3: shows Sacramento crime data for the third week of January 2006 as a regular heatmap
