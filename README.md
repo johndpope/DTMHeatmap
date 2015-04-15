@@ -23,10 +23,10 @@ pod 'DTMHeatmap'
 
 ## Usage
 Using `DTMHeatmap` is relatively straightforward. After installing using the instructions above:
-0. Register as a delegate of your map view
-1. Create an instance of `DTMHeatmap`
-2. Provide data in the form of a dictionary mapping `MKMapPoint` (wrapped in `NSValue` using `[NSValue value:&point withObjCType:@encode(MKMapPoint)]`) to weights
-3. Add the heatmap as an overlay to your map view.
+  0. Register as a delegate of your map view
+  1. Create an instance of `DTMHeatmap`
+  2. Provide data in the form of a dictionary mapping `MKMapPoint` (wrapped in `NSValue` using `[NSValue value:&point withObjCType:@encode(MKMapPoint)]`) to weights
+  3. Add the heatmap as an overlay to your map view.
 
 In the simplest form, the code looks something like this:
 ``` objective-c
