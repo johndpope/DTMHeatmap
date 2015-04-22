@@ -65,5 +65,3 @@ A sample project (`DTMHeatmapExample`) has been provided to demonstrate basic us
 
 ### Data Sources
 [McDonald's Locations](https://github.com/gavreh/usa-mcdonalds-locations)
-
-[Sacremento Crime Data](http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv at http://support.spatialkey.com/spatialkey-sample-csv-data/)
