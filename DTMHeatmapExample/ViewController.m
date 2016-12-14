@@ -111,11 +111,9 @@
 {
     if ([overlay isKindOfClass:[GridTileOverlay class]]){
         GridTileOverlayRenderer *render = [[GridTileOverlayRenderer alloc] initWithOverlay:self.gridTileOverlay];
-        self.gridTileOverlay.weakRenderer = render;
+        self.gridTileOverlay.weakRenderer = render; //todo decouple scalematrix
         self.gridTileOverlay.weakHeatmap = self.heatmap;
-        self.gridTileOverlay.weakMapView = self.mapView;
-        render.weakMapView =  self.mapView;
-        render.weakHeatmap = self.heatmap;
+   
         return render;
         
     }

@@ -28,7 +28,8 @@
         return;
     }
 
-    int worldPointSize = pow(2,(int)path.z)*256;    // 2^10 * 256 = 262,144
+    
+    long worldPointSize = pow(2,(int)path.z)*256;    // 2^10 * 256 = 262,144
     long leftEdge = path.x *256;                    // 12 *256  = 3,072 points
     long topEdge = path.y *256;                     // 256 * 8  = 2,048
     int w = self.boundingMapRect.size.width;        // 2^20 * 256 = 268,435,456
@@ -46,16 +47,11 @@
                                   fabs(ul.x - lr.x),
                                   fabs(ul.y - lr.y));
     
-    CGRect usRect = [self.weakRenderer rectForMapRect:mapRect]; //rect in user space coordinates (NOTE: not in screen points)
-    NSLog(@"user space:%@",NSStringFromCGRect(usRect));
-    
-    double zoomScale = 256 / ceil(CGRectGetWidth(usRect) ); //  256 / 262144 (width) = 0.00977
-    int columns =  ceil(CGRectGetWidth(usRect) * zoomScale); //256
-    int rows = ceil(CGRectGetHeight(usRect) * zoomScale); //256
+    double zoomScale = 256 / ceil(tileSize ); //  256 / 262144 (width) = 0.00977
+    int columns =  ceil(tileSize * zoomScale);
+    int rows = ceil(tileSize * zoomScale);
     int arrayLen = columns * rows;
     
-
-    NSLog(@"arrayLen: %d\n ",  arrayLen);
     
     // allocate an array matching the screen point size of the rect
     float *pointValues = calloc(arrayLen, sizeof(float));
@@ -63,12 +59,13 @@
     if (pointValues) {
         // pad out the mapRect with the radius on all sides.
         // we care about points that are not in (but close to) this rect
-        CGRect paddedRect = [self.weakRenderer rectForMapRect:mapRect];
+        CGRect paddedRect = CGRectMake(mapRect.origin.x, mapRect.origin.y, mapRect.size.width, mapRect.size.height);
         paddedRect.origin.x -= kSBHeatRadiusInPoints / zoomScale;
         paddedRect.origin.y -= kSBHeatRadiusInPoints / zoomScale;
         paddedRect.size.width += 2 * kSBHeatRadiusInPoints / zoomScale;
         paddedRect.size.height += 2 * kSBHeatRadiusInPoints / zoomScale;
-        MKMapRect paddedMapRect = [self.weakRenderer mapRectForRect:paddedRect];
+        
+        MKMapRect paddedMapRect = MKMapRectMake(paddedRect.origin.x, paddedRect.origin.y, paddedRect.size.width, paddedRect.size.height);
         
         // Get the dictionary of values out of the model for this mapRect and zoomScale.
         NSDictionary *heat = [self.weakHeatmap mapPointsWithHeatInMapRect:paddedMapRect
@@ -81,11 +78,13 @@
             double value = [[heat objectForKey:key] doubleValue];
             
             // figure out the correspoinding array index
-            CGPoint usPoint = [self.weakRenderer pointForMapPoint:mapPoint];
             
-            CGPoint matrixCoord = CGPointMake((usPoint.x - usRect.origin.x) * zoomScale,
-                                              (usPoint.y - usRect.origin.y) * zoomScale);
+            CGPoint usPoint = CGPointMake(mapPoint.x, mapPoint.y);
+            NSLog(@"mapPoint:%@",MKStringFromMapPoint(mapPoint));
+            NSLog(@"uspoint:%@",NSStringFromCGPoint(usPoint));
             
+            CGPoint matrixCoord = CGPointMake((usPoint.x - ul.x) * zoomScale,
+                                              (usPoint.y - ul.y) * zoomScale);
             if (value != 0 && !isnan(value)) { // don't bother with 0 or NaN
                 // iterate through surrounding pixels and increase
                 for (int i = 0; i < 2 * kSBHeatRadiusInPoints; i++) {
@@ -145,6 +144,24 @@
     }
     return result(nil,nil);
 }
+
++ (MKMapRect)mapRectForTilePath:(MKTileOverlayPath)path
+{
+    CGFloat xScale = (double)path.x / [self worldTileWidthForZoomLevel:path.z];
+    CGFloat yScale = (double)path.y / [self worldTileWidthForZoomLevel:path.z];
+    MKMapRect world = MKMapRectWorld;
+    return MKMapRectMake(world.size.width * xScale,
+                         world.size.height * yScale,
+                         world.size.width / [self worldTileWidthForZoomLevel:path.z],
+                         world.size.height / [self worldTileWidthForZoomLevel:path.z]);
+}
+
+
++ (NSUInteger)worldTileWidthForZoomLevel:(NSUInteger)zoomLevel
+{
+    return (NSUInteger)(pow(2,zoomLevel));
+}
+
 
 -(UIImage *)addGridTile:(CGSize)sz path:(MKTileOverlayPath)path image:(UIImage*)img{
     
