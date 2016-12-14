@@ -9,10 +9,14 @@
 #import "ViewController.h"
 #import "DTMHeatmapRenderer.h"
 #import "DTMDiffHeatmap.h"
+#import "GridTileOverlay.h"
+#import "GridTileOverlayRenderer.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) DTMHeatmap *heatmap;
+@property (strong, nonatomic) GridTileOverlay *gridTileOverlay;
 @property (strong, nonatomic) DTMDiffHeatmap *diffHeatmap;
+
 @end
 
 @implementation ViewController
@@ -23,16 +27,23 @@
     [self setupHeatmaps];
 }
 
+
+
+
 - (void)setupHeatmaps
 {
     // Set map region
     MKCoordinateSpan span = MKCoordinateSpanMake(1.0, 1.0);
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(38.5556, -121.4689);
     self.mapView.region = MKCoordinateRegionMake(center, span);
-    
+
     self.heatmap = [DTMHeatmap new];
+    self.gridTileOverlay = [[GridTileOverlay alloc] init];
+    [self.mapView addOverlay:self.gridTileOverlay];
+    
+
     [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
-    [self.mapView addOverlay:self.heatmap];
+    //[self.mapView addOverlay:self.heatmap];
 
     self.diffHeatmap = [DTMDiffHeatmap new];
     [self.diffHeatmap setBeforeData:[self parseLatLonFile:@"first_week"]
@@ -98,6 +109,16 @@
 #pragma mark - MKMapViewDelegate
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
+    if ([overlay isKindOfClass:[GridTileOverlay class]]){
+        GridTileOverlayRenderer *render = [[GridTileOverlayRenderer alloc] initWithOverlay:self.gridTileOverlay];
+        self.gridTileOverlay.weakRenderer = render;
+        self.gridTileOverlay.weakHeatmap = self.heatmap;
+        self.gridTileOverlay.weakMapView = self.mapView;
+        render.weakMapView =  self.mapView;
+        render.weakHeatmap = self.heatmap;
+        return render;
+        
+    }
     return [[DTMHeatmapRenderer alloc] initWithOverlay:overlay];
 }
 

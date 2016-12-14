@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83AA3B1E1DFF9950005D133B /* MercatorTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B1D1DFF9950005D133B /* MercatorTile.m */; };
+		83AA3B231DFF9FC5005D133B /* GridTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B201DFF9FC5005D133B /* GridTileOverlay.m */; };
+		83AA3B241DFF9FC5005D133B /* GridTileOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B221DFF9FC5005D133B /* GridTileOverlayRenderer.m */; };
 		ED07C2811A6427BF006B26CA /* first_week.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C27E1A6427BF006B26CA /* first_week.txt */; };
 		ED07C2821A6427BF006B26CA /* mcdonalds.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C27F1A6427BF006B26CA /* mcdonalds.txt */; };
 		ED07C2831A6427BF006B26CA /* third_week.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED07C2801A6427BF006B26CA /* third_week.txt */; };
@@ -25,6 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83AA3B1C1DFF9950005D133B /* MercatorTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MercatorTile.h; path = Heatmaps/MercatorTile.h; sourceTree = "<group>"; };
+		83AA3B1D1DFF9950005D133B /* MercatorTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MercatorTile.m; path = Heatmaps/MercatorTile.m; sourceTree = "<group>"; };
+		83AA3B1F1DFF9FC5005D133B /* GridTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridTileOverlay.h; path = Heatmaps/GridTileOverlay.h; sourceTree = "<group>"; };
+		83AA3B201DFF9FC5005D133B /* GridTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridTileOverlay.m; path = Heatmaps/GridTileOverlay.m; sourceTree = "<group>"; };
+		83AA3B211DFF9FC5005D133B /* GridTileOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridTileOverlayRenderer.h; path = Heatmaps/GridTileOverlayRenderer.h; sourceTree = "<group>"; };
+		83AA3B221DFF9FC5005D133B /* GridTileOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridTileOverlayRenderer.m; path = Heatmaps/GridTileOverlayRenderer.m; sourceTree = "<group>"; };
 		ED07C27E1A6427BF006B26CA /* first_week.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = first_week.txt; sourceTree = "<group>"; };
 		ED07C27F1A6427BF006B26CA /* mcdonalds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mcdonalds.txt; sourceTree = "<group>"; };
 		ED07C2801A6427BF006B26CA /* third_week.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = third_week.txt; sourceTree = "<group>"; };
@@ -151,6 +160,12 @@
 		EDAC95481A5DC9DE00E8403E /* Heatmap */ = {
 			isa = PBXGroup;
 			children = (
+				83AA3B1F1DFF9FC5005D133B /* GridTileOverlay.h */,
+				83AA3B201DFF9FC5005D133B /* GridTileOverlay.m */,
+				83AA3B211DFF9FC5005D133B /* GridTileOverlayRenderer.h */,
+				83AA3B221DFF9FC5005D133B /* GridTileOverlayRenderer.m */,
+				83AA3B1C1DFF9950005D133B /* MercatorTile.h */,
+				83AA3B1D1DFF9950005D133B /* MercatorTile.m */,
 				ED6E114B1A5F052300D6DB4A /* Color Providers */,
 				ED07C2841A642942006B26CA /* Heatmaps */,
 				EDAC954B1A5DC9F000E8403E /* DTMHeatmapRenderer.h */,
@@ -190,6 +205,7 @@
 				TargetAttributes = {
 					EDAC951B1A5DC8FE00E8403E = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = WMDZ2CQA8K;
 					};
 				};
 			};
@@ -235,7 +251,10 @@
 				ED07C2871A642942006B26CA /* DTMHeatmap.m in Sources */,
 				EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */,
 				EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */,
+				83AA3B241DFF9FC5005D133B /* GridTileOverlayRenderer.m in Sources */,
+				83AA3B1E1DFF9950005D133B /* MercatorTile.m in Sources */,
 				ED0BBA071A65B3A900110424 /* DTMColorProvider.m in Sources */,
+				83AA3B231DFF9FC5005D133B /* GridTileOverlay.m in Sources */,
 				ED0BBA081A65B3A900110424 /* DTMDiffColorProvider.m in Sources */,
 				EDAC95221A5DC8FE00E8403E /* main.m in Sources */,
 				EDAC954E1A5DC9F000E8403E /* DTMHeatmapRenderer.m in Sources */,
@@ -345,8 +364,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WMDZ2CQA8K;
 				INFOPLIST_FILE = DTMHeatMapExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dataminr.DTMHeatmapExample111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,8 +376,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WMDZ2CQA8K;
 				INFOPLIST_FILE = DTMHeatMapExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dataminr.DTMHeatmapExample111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
