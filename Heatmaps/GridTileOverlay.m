@@ -1,6 +1,8 @@
 #import "GridTileOverlay.h"
 #import "DTMColorProvider.h"
 #import "MercatorTile.h"
+#import "GeoHelper.h"
+#import "Geohash.h"
 
 
 @interface GridTileOverlay ()
@@ -27,12 +29,32 @@
         result(data, nil);
         return;
     }
-
     
-    long worldPointSize = pow(2,(int)path.z)*256;    // 2^10 * 256 = 262,144
-    long leftEdge = path.x *256;                    // 12 *256  = 3,072 points
-    long topEdge = path.y *256;                     // 256 * 8  = 2,048
-    int w = self.boundingMapRect.size.width;        // 2^20 * 256 = 268,435,456
+    UIImage *img = [self imageForTileX:path.x y:path.y z:path.z];
+    
+    // DEBUG GRID
+    BOOL debugGrid = YES;
+    if(debugGrid){
+        
+        UIImage *newImage = [self addGridTile:self.tileSize path:path image:img];
+        result(UIImagePNGRepresentation(newImage),nil);
+        return;
+    }
+    
+    NSData *tileData = UIImagePNGRepresentation(img);
+    [self cacheTile:tileData forPath:path];
+    result(tileData,nil);
+    return;
+
+}
+
+
+
++(NSDictionary*)mapRectForTileX:(NSUInteger)x y:(NSUInteger)y z:(NSUInteger)z{
+    long worldPointSize = pow(2,(int)z)*256;    // 2^10 * 256 = 262,144
+    long leftEdge = x *256;                    // 12 *256  = 3,072 points
+    long topEdge = y *256;                     // 256 * 8  = 2,048
+    int w = pow(2,20)*256;                      // 2^20 * 256 = 268,435,456
     int zScale =  w / worldPointSize;               // 268,435,456/262,144 = 1,024
     int tileSize = 256 * zScale;                    // 256 * 1,024 = 262,144
     long x0 = leftEdge * zScale;                    // 3,072 * 1,024 = 3,145,728
@@ -43,14 +65,53 @@
     MKMapPoint ul = MKMapPointMake(x0, y0);         // upper left
     MKMapPoint lr = MKMapPointMake(x1, y1);         // lower right
     MKMapRect mapRect = MKMapRectMake (fmin(ul.x, lr.x),
-                                  fmin(ul.y, lr.y),
-                                  fabs(ul.x - lr.x),
-                                  fabs(ul.y - lr.y));
+                                       fmin(ul.y, lr.y),
+                                       fabs(ul.x - lr.x),
+                                       fabs(ul.y - lr.y));
+    NSValue *ulValue = [NSValue value:&ul withObjCType:@encode(MKMapPoint)];
+    NSValue *lrValue = [NSValue value:&lr withObjCType:@encode(MKMapPoint)];
+    
+    
+    NSDictionary *d0 = [NSDictionary dictionaryWithObjectsAndKeys:MKStringFromMapRect(mapRect),@"mapRect",
+                        ulValue,@"ul",
+                        lrValue,@"lr", nil];
+    
+    return d0;
+    
+}
+
++(NSString *)save:(MKMapRect)rect{
+    return MKStringFromMapRect(rect);
+}
+
++(MKMapRect)load:(NSString *)str
+{
+    MKMapRect mapRect;
+    CGRect rect = CGRectFromString(str);
+    mapRect.origin.x = rect.origin.x;
+    mapRect.origin.y = rect.origin.y;
+    mapRect.size.width = rect.size.width;
+    mapRect.size.height = rect.size.height;
+    return mapRect;
+}
+
+-(UIImage*)imageForTileX:(NSUInteger)x y:(NSUInteger)y z:(NSUInteger)z{
+    
+    
+    long worldPointSize = pow(2,(int)z)*256;    // 2^10 * 256 = 262,144
+    int w = self.boundingMapRect.size.width;        // 2^20 * 256 = 268,435,456
+    int zScale =  w / worldPointSize;               // 268,435,456/262,144 = 1,024
+    int tileSize = 256 * zScale;                    // 256 * 1,024 = 262,144
     
     double zoomScale = 256 / ceil(tileSize ); //  256 / 262144 (width) = 0.00977
     int columns =  ceil(tileSize * zoomScale);
     int rows = ceil(tileSize * zoomScale);
     int arrayLen = columns * rows;
+    
+    NSDictionary *d0 = [GridTileOverlay mapRectForTileX:x y:y z:z];
+    MKMapRect mapRect = [GridTileOverlay load:[d0 valueForKey:@"mapRect"]];
+    MKMapPoint ul;
+    [[d0 valueForKey:@"ul"] getValue:&ul];
     
     
     // allocate an array matching the screen point size of the rect
@@ -67,9 +128,14 @@
         
         MKMapRect paddedMapRect = MKMapRectMake(paddedRect.origin.x, paddedRect.origin.y, paddedRect.size.width, paddedRect.size.height);
         
+        NSDictionary *d0 = [GeoHelper mbrGeoHashForMapRect:mapRect];
+        NSString *mbr = [d0 valueForKey:@"mbr"];
+        
+        NSLog(@"mbr:%@",mbr);
+        
         // Get the dictionary of values out of the model for this mapRect and zoomScale.
         NSDictionary *heat = [self.weakHeatmap mapPointsWithHeatInMapRect:paddedMapRect
-                                                    atScale:zoomScale];
+                                                                  atScale:zoomScale];
         
         for (NSValue *key in heat) {
             // convert key to mapPoint
@@ -78,10 +144,7 @@
             double value = [[heat objectForKey:key] doubleValue];
             
             // figure out the correspoinding array index
-            
             CGPoint usPoint = CGPointMake(mapPoint.x, mapPoint.y);
-            NSLog(@"mapPoint:%@",MKStringFromMapPoint(mapPoint));
-            NSLog(@"uspoint:%@",NSStringFromCGPoint(usPoint));
             
             CGPoint matrixCoord = CGPointMake((usPoint.x - ul.x) * zoomScale,
                                               (usPoint.y - ul.y) * zoomScale);
@@ -127,23 +190,13 @@
         free(pointValues);
         UIImage *img  =  [self imageFromBytes:rgba];
         free(rgba);
-       
-        
-        // DEBUG GRID
-        BOOL debugGrid = YES;
-        if(debugGrid){
-            UIImage *newImage = [self addGridTile:self.tileSize path:path image:img];
-            result(UIImagePNGRepresentation(newImage),nil);
-            return;
-        }
-        
-        NSData *tileData = UIImagePNGRepresentation(img);
-        [self cacheTile:tileData forPath:path];
-        result(tileData,nil);
-        return;
+        return img;
     }
-    return result(nil,nil);
+    return [[UIImage alloc]init];
 }
+
+
+
 
 + (MKMapRect)mapRectForTilePath:(MKTileOverlayPath)path
 {
@@ -175,8 +228,18 @@
     CGContextStrokeRect(ctx, CGRectMake(0, 0, sz.width, sz.height));
     [[UIColor blackColor] setStroke];
     
-    NSString *text = [NSString stringWithFormat:@"X=%d\nY=%d\nZ=%d",(int)path.x,(int)path.y,(int)path.z];
-    [text drawInRect:rect withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20.0],
+    MKMapRect mapRect = [GridTileOverlay mapRectForTilePath:path];
+    
+    NSDictionary *d0 = [GeoHelper mbrGeoHashForMapRect:mapRect];
+    NSString *ne = d0[@"ne"];
+    NSString *nw = d0[@"nw"];
+    NSString *se = d0[@"se"];
+    NSString *sw = d0[@"sw"];
+    NSString *mbr = d0[@"mbr"];
+    
+    
+    NSString *text = [NSString stringWithFormat:@"X=%d Y=%d Z=%d\nne:%@ \nnw:%@ \nse:%@ \nsw:%@ \nmbr:%@ ",(int)path.x,(int)path.y,(int)path.z,ne,nw,se,sw,mbr];
+    [text drawInRect:rect withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0],
                                            NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     UIImage *gridImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -202,52 +265,6 @@
 }
 
 
-/*
--(void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *, NSError *))result {
-    
-    self.cache = YES;
-    
-    if(self.cache&&[self cachedTileExistsForPath:path]){
-        NSData *data=[self getCachedTileForPath:path];
-        if(data.length==0){
-            NSLog(@"0");
-        }
-        result(data, nil);
-        return;
-    }
-    
-    
-    [super loadTileAtPath:path result:^(NSData *data, NSError *err) {
-        
-        if((!err)&&self.cache){
-            [self cacheTile:data forPath:path];
-        }
-        
-        if(err){
-            NSLog(@"Error unable to get tile");
-            
-            MKTileOverlayPath parent=[GridTileOverlay ParentTilePathForPath:path];
-            
-            if(self.cache&&[self cachedTileExistsForPath:parent]){
-                
-                NSData *data0 = [self getCachedTileForPath:parent];
-                NSData *data=[GridTileOverlay ParentTileImageSection:data0 forPath:path];
-                if(data.length==0){
-                    NSLog(@"0");
-                }
-                result(data, nil);
-                return;
-            }
-            
-            
-        }
-        
-        result(data, err);
-    }];
-    
-    
-    
-}*/
 
 +(NSData *)ParentTileImageSection:(NSData *)data forPath:(MKTileOverlayPath)path{
     
@@ -316,7 +333,7 @@
 
 -(NSString *)fileNameForPath:(MKTileOverlayPath)path{
     
-
+    
     if(!_tilePath){
         _tilePath= [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[self uniqueId]];
     }

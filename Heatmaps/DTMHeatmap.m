@@ -8,6 +8,8 @@
 
 #import "DTMHeatmap.h"
 #import "DTMColorProvider.h"
+#import "GeoHash.h"
+
 
 @interface DTMHeatmap ()
 @property double maxValue;

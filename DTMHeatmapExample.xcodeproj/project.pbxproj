@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		834D76051E030FCE007429D7 /* cgeohash.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D75FC1E030FCE007429D7 /* cgeohash.m */; };
+		834D76061E030FCE007429D7 /* GeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D75FE1E030FCE007429D7 /* GeoHash.m */; };
+		834D76071E030FCE007429D7 /* GHArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D76001E030FCE007429D7 /* GHArea.m */; };
+		834D76081E030FCE007429D7 /* GHNeighbors.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D76021E030FCE007429D7 /* GHNeighbors.m */; };
+		834D76091E030FCE007429D7 /* GHRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D76041E030FCE007429D7 /* GHRange.m */; };
+		834D76131E033A17007429D7 /* GeoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834D76121E033A17007429D7 /* GeoHelper.m */; };
 		83AA3B1E1DFF9950005D133B /* MercatorTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B1D1DFF9950005D133B /* MercatorTile.m */; };
 		83AA3B231DFF9FC5005D133B /* GridTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B201DFF9FC5005D133B /* GridTileOverlay.m */; };
 		83AA3B241DFF9FC5005D133B /* GridTileOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA3B221DFF9FC5005D133B /* GridTileOverlayRenderer.m */; };
@@ -28,6 +34,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		834D75FB1E030FCE007429D7 /* cgeohash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cgeohash.h; sourceTree = "<group>"; };
+		834D75FC1E030FCE007429D7 /* cgeohash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cgeohash.m; sourceTree = "<group>"; };
+		834D75FD1E030FCE007429D7 /* GeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoHash.h; sourceTree = "<group>"; };
+		834D75FE1E030FCE007429D7 /* GeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoHash.m; sourceTree = "<group>"; };
+		834D75FF1E030FCE007429D7 /* GHArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHArea.h; sourceTree = "<group>"; };
+		834D76001E030FCE007429D7 /* GHArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHArea.m; sourceTree = "<group>"; };
+		834D76011E030FCE007429D7 /* GHNeighbors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHNeighbors.h; sourceTree = "<group>"; };
+		834D76021E030FCE007429D7 /* GHNeighbors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHNeighbors.m; sourceTree = "<group>"; };
+		834D76031E030FCE007429D7 /* GHRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHRange.h; sourceTree = "<group>"; };
+		834D76041E030FCE007429D7 /* GHRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHRange.m; sourceTree = "<group>"; };
+		834D76111E033A17007429D7 /* GeoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoHelper.h; sourceTree = "<group>"; };
+		834D76121E033A17007429D7 /* GeoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoHelper.m; sourceTree = "<group>"; };
 		83AA3B1C1DFF9950005D133B /* MercatorTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MercatorTile.h; path = Heatmaps/MercatorTile.h; sourceTree = "<group>"; };
 		83AA3B1D1DFF9950005D133B /* MercatorTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MercatorTile.m; path = Heatmaps/MercatorTile.m; sourceTree = "<group>"; };
 		83AA3B1F1DFF9FC5005D133B /* GridTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridTileOverlay.h; path = Heatmaps/GridTileOverlay.h; sourceTree = "<group>"; };
@@ -72,6 +90,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		834D75FA1E030FCE007429D7 /* Geohash */ = {
+			isa = PBXGroup;
+			children = (
+				834D75FB1E030FCE007429D7 /* cgeohash.h */,
+				834D75FC1E030FCE007429D7 /* cgeohash.m */,
+				834D75FD1E030FCE007429D7 /* GeoHash.h */,
+				834D75FE1E030FCE007429D7 /* GeoHash.m */,
+				834D75FF1E030FCE007429D7 /* GHArea.h */,
+				834D76001E030FCE007429D7 /* GHArea.m */,
+				834D76011E030FCE007429D7 /* GHNeighbors.h */,
+				834D76021E030FCE007429D7 /* GHNeighbors.m */,
+				834D76031E030FCE007429D7 /* GHRange.h */,
+				834D76041E030FCE007429D7 /* GHRange.m */,
+				834D76111E033A17007429D7 /* GeoHelper.h */,
+				834D76121E033A17007429D7 /* GeoHelper.m */,
+			);
+			name = Geohash;
+			path = Heatmaps/Geohash;
+			sourceTree = "<group>";
+		};
 		ED07C27D1A6427BF006B26CA /* Sample Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +198,7 @@
 		EDAC95481A5DC9DE00E8403E /* Heatmap */ = {
 			isa = PBXGroup;
 			children = (
+				834D75FA1E030FCE007429D7 /* Geohash */,
 				83AA3B1F1DFF9FC5005D133B /* GridTileOverlay.h */,
 				83AA3B201DFF9FC5005D133B /* GridTileOverlay.m */,
 				83AA3B211DFF9FC5005D133B /* GridTileOverlayRenderer.h */,
@@ -248,17 +287,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834D76091E030FCE007429D7 /* GHRange.m in Sources */,
 				ED07C2871A642942006B26CA /* DTMHeatmap.m in Sources */,
 				EDAC95281A5DC8FE00E8403E /* ViewController.m in Sources */,
+				834D76131E033A17007429D7 /* GeoHelper.m in Sources */,
 				EDAC95251A5DC8FE00E8403E /* AppDelegate.m in Sources */,
 				83AA3B241DFF9FC5005D133B /* GridTileOverlayRenderer.m in Sources */,
 				83AA3B1E1DFF9950005D133B /* MercatorTile.m in Sources */,
+				834D76061E030FCE007429D7 /* GeoHash.m in Sources */,
 				ED0BBA071A65B3A900110424 /* DTMColorProvider.m in Sources */,
 				83AA3B231DFF9FC5005D133B /* GridTileOverlay.m in Sources */,
 				ED0BBA081A65B3A900110424 /* DTMDiffColorProvider.m in Sources */,
 				EDAC95221A5DC8FE00E8403E /* main.m in Sources */,
 				EDAC954E1A5DC9F000E8403E /* DTMHeatmapRenderer.m in Sources */,
+				834D76071E030FCE007429D7 /* GHArea.m in Sources */,
+				834D76081E030FCE007429D7 /* GHNeighbors.m in Sources */,
 				ED07C28A1A64299B006B26CA /* DTMDiffHeatmap.m in Sources */,
+				834D76051E030FCE007429D7 /* cgeohash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
