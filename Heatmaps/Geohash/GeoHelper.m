@@ -26,6 +26,7 @@
     return [[self hashGridForMapRect:mapRect] valueForKey:@"mbr"];
 }
 
+// This is a wide net that will spill outside the mapRect.
 +(NSDictionary*)hashGridForMapRect:(MKMapRect)mapRect{
     
     CLLocationCoordinate2D ne =  [GeoHelper getNECoordinate:mapRect];
@@ -49,19 +50,28 @@
     
  
     NSBag *bag = [NSBag bag];
-   
-    [bag add:[neHash substringToIndex:1]];
-    [bag add:[nwHash substringToIndex:1]];
-    [bag add:[seHash substringToIndex:1]];
-    [bag add:[swHash substringToIndex:1]];
+    int depth = 2; // chars deep into geohash
+    BOOL excludeTopLevel = YES; 
     
+    for(int i=1;i<=depth;i++){
+        if (excludeTopLevel && i == 1) {
+            continue;
+        }
+        [bag add:[neHash substringToIndex:i]];
+        [bag add:[nwHash substringToIndex:i]];
+        [bag add:[seHash substringToIndex:i]];
+        [bag add:[swHash substringToIndex:i]];
+    }
+    // NSLog(@"bag:%@",[bag internalDictionary]);
+    /*
+     9z = 2;
+     9z9 = 1;
+     9zs = 1;
+     cb = 2;
+     cb1 = 1;
+     cbh = 1;
+     */
     
-    [bag add:[neHash substringToIndex:2]];
-    [bag add:[nwHash substringToIndex:2]];
-    [bag add:[seHash substringToIndex:2]];
-    [bag add:[swHash substringToIndex:2]];
-    
-    //NSLog(@"bag:%@",[bag internalDictionary]);
     
     NSDictionary *d0 = [NSDictionary dictionaryWithObjectsAndKeys:
                         neHash,@"ne",
