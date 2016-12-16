@@ -25,14 +25,7 @@ THE SOFTWARE.
 #import <Foundation/Foundation.h>
 
 @interface GHNeighbors : NSObject {
-  NSString *north;
-  NSString *south;
-  NSString *west;
-  NSString *east;
-  NSString *norrthWest;
-  NSString *northEast;
-  NSString *southWest;
-  NSString *southEast;
+
 }
 
 @property (readonly, strong) NSString *north;

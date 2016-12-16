@@ -12,6 +12,6 @@
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
+- (NSDictionary *)parseLatLonFileToGeohash:(NSString *)fileName;
 @end
 

@@ -24,9 +24,11 @@ static const int kSBScreenPointsPerBucket = 10;
 @class DTMColorProvider;
 
 @interface DTMHeatmap : NSObject <MKOverlay>
-
+@property NSDictionary *geoHashPointsWithHeat;
 - (NSDictionary *)mapPointsWithHeatInMapRect:(MKMapRect)rect
                                      atScale:(MKZoomScale)scale;
+- (NSDictionary *)mapPointsUsingGeoHashInMapRect:(MKMapRect)rect
+                                         atScale:(MKZoomScale)scale;
 - (MKMapRect)boundingMapRect;
 - (void)setData:(NSDictionary *)newHeatMapData;
 

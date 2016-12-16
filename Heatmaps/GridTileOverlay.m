@@ -17,7 +17,7 @@
 
 //http://stackoverflow.com/questions/27418144/getting-mkmaprect-from-mktileoverlaypath/27431997#27431997
 -(void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *, NSError *))result {
-    NSLog(@"Loading tile x/y/z: %ld/%ld/%ld",(long)path.x,(long)path.y,(long)path.z);
+  //  NSLog(@"Loading tile x/y/z: %ld/%ld/%ld",(long)path.x,(long)path.y,(long)path.z);
     
     self.cache = YES;
     
@@ -128,13 +128,10 @@
         
         MKMapRect paddedMapRect = MKMapRectMake(paddedRect.origin.x, paddedRect.origin.y, paddedRect.size.width, paddedRect.size.height);
         
-        NSDictionary *d0 = [GeoHelper mbrGeoHashForMapRect:mapRect];
-        NSString *mbr = [d0 valueForKey:@"mbr"];
-        
-        NSLog(@"mbr:%@",mbr);
+
         
         // Get the dictionary of values out of the model for this mapRect and zoomScale.
-        NSDictionary *heat = [self.weakHeatmap mapPointsWithHeatInMapRect:paddedMapRect
+        NSDictionary *heat = [self.weakHeatmap mapPointsUsingGeoHashInMapRect:paddedMapRect
                                                                   atScale:zoomScale];
         
         for (NSValue *key in heat) {
@@ -230,15 +227,14 @@
     
     MKMapRect mapRect = [GridTileOverlay mapRectForTilePath:path];
     
-    NSDictionary *d0 = [GeoHelper mbrGeoHashForMapRect:mapRect];
-    NSString *ne = d0[@"ne"];
-    NSString *nw = d0[@"nw"];
-    NSString *se = d0[@"se"];
-    NSString *sw = d0[@"sw"];
-    NSString *mbr = d0[@"mbr"];
+    NSDictionary *d0 = [GeoHelper hashGridForMapRect:mapRect];
+    NSBag *bag = [d0 valueForKey:@"mbr"] ;
+//    NSString *ne = d0[@"ne"];
+//    NSString *nw = d0[@"nw"];
+//    NSString *se = d0[@"se"];
+//    NSString *sw = d0[@"sw"];
     
-    
-    NSString *text = [NSString stringWithFormat:@"X=%d Y=%d Z=%d\nne:%@ \nnw:%@ \nse:%@ \nsw:%@ \nmbr:%@ ",(int)path.x,(int)path.y,(int)path.z,ne,nw,se,sw,mbr];
+    NSString *text = [NSString stringWithFormat:@"X=%d Y=%d Z=%d\n bag:%@ ",(int)path.x,(int)path.y,(int)path.z,bag];
     [text drawInRect:rect withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0],
                                            NSForegroundColorAttributeName:[UIColor blackColor]}];
     

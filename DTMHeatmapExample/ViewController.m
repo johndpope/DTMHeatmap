@@ -11,6 +11,9 @@
 #import "DTMDiffHeatmap.h"
 #import "GridTileOverlay.h"
 #import "GridTileOverlayRenderer.h"
+#import "GeoHash.h"
+#import "GeoHelper.h"
+
 
 @interface ViewController ()
 @property (strong, nonatomic) DTMHeatmap *heatmap;
@@ -42,6 +45,9 @@
     [self.mapView addOverlay:self.gridTileOverlay];
     
 
+    
+    self.heatmap.geoHashPointsWithHeat = [self parseLatLonFileToGeohash:@"mcdonalds"];
+    
     [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
     //[self.mapView addOverlay:self.heatmap];
 
@@ -79,6 +85,55 @@
     }
     
     return ret;
+}
+
+
+- (NSDictionary *)parseLatLonFileToGeohash:(NSString *)fileName
+{
+    NSMutableDictionary *hashes = [NSMutableDictionary new];
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName
+                                                     ofType:@"txt"];
+    NSString *content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSArray *lines = [content componentsSeparatedByString:@"\n"];
+    for (NSString *line in lines) {
+        NSArray *parts = [line componentsSeparatedByString:@","];
+        NSString *latStr = parts[0];
+        NSString *lonStr = parts[1];
+        
+        CLLocationDegrees latitude = [latStr doubleValue];
+        CLLocationDegrees longitude = [lonStr doubleValue];
+        
+        // For this example, each location is weighted equally
+        double weight = 1;
+        
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude
+                                                          longitude:longitude];
+        
+        MKMapPoint point = MKMapPointForCoordinate(location.coordinate);
+        NSValue *pointValue = [NSValue value:&point
+                                withObjCType:@encode(MKMapPoint)];
+        NSString *hash = [GeoHash hashForLatitude:latitude longitude:longitude length:2];
+        NSString *oneLetter = [hash substringWithRange:NSMakeRange(0, 1)];
+        
+        NSMutableDictionary *d0 = [hashes valueForKey:hash];
+        NSMutableDictionary *d1 = [hashes valueForKey:oneLetter];
+        
+        if(d0==nil){
+            d0 = [NSMutableDictionary dictionary];
+        }
+        if(d1==nil){
+            d1 = [NSMutableDictionary dictionary];
+        }
+        d0[pointValue] = @(weight);
+        d1[pointValue] = @(weight);
+        [hashes setValue:d0 forKey:hash];
+        [hashes setValue:d1 forKey:oneLetter];
+        
+    }
+    
+    return hashes;
 }
 
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender

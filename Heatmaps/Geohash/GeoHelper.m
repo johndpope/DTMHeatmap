@@ -3,10 +3,30 @@
 #import "GeoHelper.h"
 #import "GeoHash.h"
 
-
 @implementation GeoHelper
 
-+(NSDictionary*)mbrGeoHashForMapRect:(MKMapRect)mapRect{
+
++(NSString*)geoHashForMapRect:(MKMapRect)mapRect size:(int)size{
+    NSDictionary *d0 = [self hashGridForMapRect:mapRect];
+    __block NSString *geohash = @"";
+    NSArray *array = [(NSSet*)[d0 valueForKey:@"mbr"] allObjects];
+    geohash = [array objectAtIndex:0];
+   [array enumerateObjectsUsingBlock:^(NSString *gHash, NSUInteger idx, BOOL * _Nonnull stop) {
+       if (gHash.length == size) {
+           geohash = gHash;
+       }
+   }];
+
+
+    return [geohash substringWithRange:NSMakeRange(0, 1)];
+  
+    
+}
++(NSBag*)hashBagForMapRect:(MKMapRect)mapRect{
+    return [[self hashGridForMapRect:mapRect] valueForKey:@"mbr"];
+}
+
++(NSDictionary*)hashGridForMapRect:(MKMapRect)mapRect{
     
     CLLocationCoordinate2D ne =  [GeoHelper getNECoordinate:mapRect];
     CLLocationCoordinate2D nw =  [GeoHelper getNWCoordinate:mapRect];
@@ -27,32 +47,28 @@
                                       longitude:sw.longitude
                                          length:hashLength];
     
-    NSLog(@"ne:%@",neHash);
-    NSLog(@"nw:%@",nwHash);
-    NSLog(@"se:%@",seHash);
-    NSLog(@"sw:%@",swHash);
+ 
+    NSBag *bag = [NSBag bag];
+   
+    [bag add:[neHash substringToIndex:1]];
+    [bag add:[nwHash substringToIndex:1]];
+    [bag add:[seHash substringToIndex:1]];
+    [bag add:[swHash substringToIndex:1]];
     
-    __block NSString *mbrHash = @"";
-    [neHash enumerateSubstringsInRange:NSMakeRange(0, neHash.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-        
-        NSString *str = [neHash substringToIndex:substringRange.location];
-        if ([nwHash componentsSeparatedByString:str].count >1) {
-            mbrHash = str;
-            if ([seHash componentsSeparatedByString:str].count >1) {
-                mbrHash = str;
-                if ([swHash componentsSeparatedByString:str].count>1) {
-                    mbrHash = str;
-                }
-            }
-        }
-    }] ;
+    
+    [bag add:[neHash substringToIndex:2]];
+    [bag add:[nwHash substringToIndex:2]];
+    [bag add:[seHash substringToIndex:2]];
+    [bag add:[swHash substringToIndex:2]];
+    
+    //NSLog(@"bag:%@",[bag internalDictionary]);
     
     NSDictionary *d0 = [NSDictionary dictionaryWithObjectsAndKeys:
                         neHash,@"ne",
                         nwHash,@"nw",
                         seHash,@"se",
                         swHash,@"sw",
-                        mbrHash,@"mbr",nil];
+                        bag,@"mbr",nil];
     return d0;
 }
 +(CLLocationCoordinate2D)getNECoordinate:(MKMapRect)mRect{
